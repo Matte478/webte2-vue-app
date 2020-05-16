@@ -11,7 +11,7 @@
                   class="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
-                  v-model="command"
+                  v-model="problem"
                 ></textarea>
               </div>
               <button
@@ -29,7 +29,19 @@
           >
             výsledok
             <div>
-              {{command}}
+              {{ result }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div
+            class="col"
+            v-if="error"
+          >
+            chyba
+            <div>
+              {{ error }}
             </div>
           </div>
         </div>
@@ -39,27 +51,33 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios"
 
 export default {
   data() {
     return {
-      command: "",
-      result: ""
+      problem: "",
+      result: "",
+      error: ""
     }
   },
 
   methods: {
     submitForm() {
       axios
-        .post("/calculate", {
-          calculate: this.calculate
+        .get("/calculate", {
+          params: {
+            problem: this.problem
+          }
         })
         .then(response => {
-          console.log(response)
+          this.error = ""
+          this.result = response.data.data
         })
         .catch(error => {
-          console.log(error)
+          this.response = ""
+          this.error = error.response.data.message
+          console.log(error.response.data)
         })
     }
   }
