@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: '/final/dist/',
+    publicPath: '/final-app',
 
     pluginOptions: {
       i18n: {

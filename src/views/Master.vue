@@ -4,7 +4,7 @@
       <router-link
         :to="{name: 'home'}"
         class="logo navbar-brand"
-      >Dzive kody</router-link>
+      >{{ $t('nav.title') }}</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -21,38 +21,33 @@
         id="navbarText"
       >
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a
+          <li class="nav-item">
+            <router-link
+              :to="{name: 'test'}"
               class="nav-link"
-              href="#"
-            > page </a>
+            >{{ $t('nav.page') }}</router-link>
           </li>
           <li class="nav-item">
             <a
               class="nav-link"
               href="#"
-            > page </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-            > page </a>
+            > {{ $t('nav.page') }} </a>
           </li>
         </ul>
         <span class="navbar-text white-text">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a
-                class="nav-link"
-                href="#"
-              > SK </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-              > EN </a>
+              <span class="lang-select">{{ $t('nav.language') }}:</span>
+              <select
+                v-model="$i18n.locale"
+                @change="changeLocale"
+              >
+                <option
+                  v-for="(lang, i) in $i18n.availableLocales"
+                  :key="`Lang${i}`"
+                  :value="lang"
+                > {{ lang }} </option>
+              </select>
             </li>
           </ul>
         </span>
@@ -68,6 +63,24 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    changeLocale() {
+      this.$router.push({
+        params: {
+          lang: this.$i18n.locale
+        }
+      })
+    }
+  }
+}
+</script>
+
 <style lang="scss">
 @import "~@/assets/scss/app.scss";
+
+.lang-select {
+  margin-right: 0.5em;
+}
 </style>

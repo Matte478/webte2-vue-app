@@ -10,13 +10,22 @@ axios.defaults.baseURL = 'http://wt45.fei.stuba.sk:8045/final-api/api'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-// import App from './App.vue'
 
 import Master from './views/Master'
-
 import i18n from './i18n'
 
 Vue.config.productionTip = false
+
+router.beforeEach((to, from, next) => {
+  let lang = to.params.lang
+
+  if (!lang || (lang != process.env.VUE_APP_I18N_LOCALE && lang != process.env.VUE_APP_I18N_FALLBACK_LOCALE)) {
+    lang = process.env.VUE_APP_I18N_LOCALE
+  }
+
+  i18n.locale = lang
+  next()
+})
 
 Vue.use(VueRouter)
 

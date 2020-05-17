@@ -1,3 +1,17 @@
 {
-  "message": "hello i18n !!"
+    "nav": {
+        "title": "Dzive kody",
+        "language": "Jazyk",
+        "home": "Domov",
+        "page": "Podstránka"
+    },
+
+    "home": {
+        "title": "Vypočítajte nejaký príklad",
+        "problem": "Príklad",
+        "problem-placeholder": "Sem zadajte príklad, ktorý chcete vypočítať",
+        "calculate": "Vypočítať",
+        "result": "Výsledok",
+        "error": "Chyba"
+    }
 }

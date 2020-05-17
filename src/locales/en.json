@@ -1,3 +1,17 @@
 {
-  "message": "hello i18n !!"
+    "nav": {
+        "title": "Dzive kody",
+        "language": "Language",
+        "home": "Home",
+        "page": "Page"
+    },
+
+    "home": {
+        "title": "Calculate some problem",
+        "problem": "Problem",
+        "problem-placeholder": "Problem placeholder",
+        "calculate": "Calculate",
+        "result": "Result",
+        "error": "Error"
+    }
 }

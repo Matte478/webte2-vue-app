@@ -4,20 +4,28 @@
       <div class="container">
         <div class="row">
           <div class="col">
+            <h2>{{ $t('home.title') }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <form @submit.prevent="submitForm">
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Príkaz</label>
+                <label for="exampleFormControlTextarea1">
+                  {{ $t('home.problem') }}
+                </label>
                 <textarea
                   class="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
                   v-model="problem"
+                  :placeholder="$t('home.problem-placeholder')"
                 ></textarea>
               </div>
               <button
                 type="submit"
                 class="btn btn-primary btn-block"
-              >Vypočítať</button>
+              > {{ $t('home.calculate') }} </button>
             </form>
           </div>
         </div>
@@ -27,7 +35,7 @@
             class="col"
             v-if="result"
           >
-            výsledok
+            {{ $t('home.result') }}
             <div>
               {{ result }}
             </div>
@@ -39,7 +47,7 @@
             class="col"
             v-if="error"
           >
-            chyba
+            {{ $t('home.error') }}
             <div>
               {{ error }}
             </div>
@@ -75,7 +83,7 @@ export default {
           this.result = response.data.data
         })
         .catch(error => {
-          this.response = ""
+          this.result = ""
           this.error = error.response.data.message
           console.log(error.response.data)
         })
