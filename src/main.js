@@ -14,12 +14,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Master from './views/Master'
 
+import i18n from './i18n'
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 
 new Vue({
   render: h => h(Master),
-  router,
-
+  i18n,
+  router
 }).$mount('#app')
