@@ -24,19 +24,8 @@ const routes = [
         name: 'home',
         component: Home
       },
-      {
-        path: 'test',
-        name: 'test',
-        component: Home
-      }
     ]
   },
-
-  // {
-  //   path: '/blablabla',
-  //   name: 'test2',
-  //   component: Home
-  // },
 
   {
     path: '*',
