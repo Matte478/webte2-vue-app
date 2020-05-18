@@ -1,5 +1,29 @@
 <template>
-  <div>
-    404
-  </div>
+<!-- Source: https://codepen.io/salehriaz/pen/erJrZM -->
+<div class="bg-purple">
+  <div class="stars">
+        <div class="central-body">
+            <img class="image-404" alt="" src="http://salehriaz.com/404Page/img/404.svg" >
+        </div>
+        <div class="objects">
+            <img class="object_rocket" alt="" src="http://salehriaz.com/404Page/img/rocket.svg">
+            <div class="earth-moon">
+                <img class="object_earth" alt="" src="http://salehriaz.com/404Page/img/earth.svg" >
+                <img class="object_moon" alt="" src="http://salehriaz.com/404Page/img/moon.svg">
+            </div>
+            <div class="box_astronaut">
+                <img class="object_astronaut" alt="" src="http://salehriaz.com/404Page/img/astronaut.svg">
+            </div>
+        </div>
+        <div class="glowing_stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+
+        </div>
+
+    </div>
+</div>
 </template>
