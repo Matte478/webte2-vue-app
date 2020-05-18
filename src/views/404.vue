@@ -1,5 +1,6 @@
 <template>
 <!-- Source: https://codepen.io/salehriaz/pen/erJrZM -->
+<section class="section--404">
 <div class="bg-purple">
   <div class="stars">
         <div class="central-body">
@@ -26,4 +27,5 @@
 
     </div>
 </div>
+</section>
 </template>
