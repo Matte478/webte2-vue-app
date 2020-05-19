@@ -13,5 +13,9 @@
         "calculate": "Calculate",
         "result": "Result",
         "error": "Error"
+    },
+
+    "PageNotFound":{
+        "text": "LOOKS LIKE YOU ARE LOST IN SPACE"
     }
 }

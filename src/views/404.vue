@@ -4,7 +4,9 @@
 <div class="bg-purple">
   <div class="stars">
         <div class="central-body">
-            <img class="image-404" alt="" src="http://salehriaz.com/404Page/img/404.svg" >
+            <!-- <img class="image-404" alt="" src="http://salehriaz.com/404Page/img/404.svg" > -->
+            <h1 class="image-404">404</h1>
+            <p class="image-404 text-404">{{$t('PageNotFound.text')}}</p>
         </div>
         <div class="objects">
             <img class="object_rocket" alt="" src="http://salehriaz.com/404Page/img/rocket.svg">

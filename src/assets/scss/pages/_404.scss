@@ -279,11 +279,23 @@
         animation: move-astronaut 50s infinite linear both alternate;
     }
 
+    
+
     .image-404 {
         position: relative;
-        width: 300px;
+        margin: 0 auto;
         z-index: 100;
         pointer-events: none;
+        color: white;
+        font-size: 8rem;
+        max-width: 300px;
+        font-weight: bold;
+    }
+    
+
+    .text-404 {
+        max-width: 370px;
+        font-size: 32px;
     }
 
     .stars {

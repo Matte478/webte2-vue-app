@@ -22,10 +22,10 @@
       >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link
+            <!-- <router-link
               :to="{name: 'test'}"
               class="nav-link"
-            >{{ $t('nav.page') }}</router-link>
+            >{{ $t('nav.page') }}</router-link> -->
           </li>
           <li class="nav-item">
             <a

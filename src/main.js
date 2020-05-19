@@ -18,6 +18,7 @@ router.beforeEach((to, from, next) => {
 
   if (!lang || (lang != process.env.VUE_APP_I18N_LOCALE && lang != process.env.VUE_APP_I18N_FALLBACK_LOCALE)) {
     lang = process.env.VUE_APP_I18N_LOCALE
+    router.push({ path: lang+ '/404' })
   }
 
   i18n.locale = lang

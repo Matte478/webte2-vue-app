@@ -13,5 +13,9 @@
         "calculate": "Vypočítať",
         "result": "Výsledok",
         "error": "Chyba"
+    },
+    
+    "PageNotFound":{
+        "text": "STRATENÝ VO VESMÍRE"
     }
 }

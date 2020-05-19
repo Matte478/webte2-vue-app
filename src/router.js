@@ -24,14 +24,21 @@ const routes = [
         name: 'home',
         component: Home
       },
+      {
+        path: '/404',
+        name: 'page-not-found',
+        component: PageNotFound
+      },
+      {
+        path: '*',
+        // name: 'page-not-found',
+        component: PageNotFound
+      }
+    
     ]
   },
 
-  {
-    path: '*',
-    name: 'page-not-found',
-    component: PageNotFound
-  }
+  
 ]
 
 const router = new VueRouter({
