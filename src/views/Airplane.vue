@@ -3,10 +3,15 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form @submit.prevent="submitForm">
+                    <h2 class="section__title">{{ $t('airplane.title') }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form @submit.prevent="submitForm" class="mb--2">
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">{{ $t('home.problem') }}</label>
-                            <input class="form-control" id="exampleFormControlTextarea1" type="text" v-model="r" name="r" :placeholder="$t('home.problem-placeholder')" />
+                            <label for="exampleFormControlTextarea1">{{ $t('airplane.problem') }}</label>
+                            <input class="form-control" id="exampleFormControlTextarea1" type="text" v-model="r" name="r" :placeholder="$t('airplane.placeholder')" />
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">{{ $t('home.calculate') }}</button>
                     </form>
@@ -16,20 +21,26 @@
               {{backflapAngle}}-->
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row mb--2">
+                <div class="col-2">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="graphCheck" v-model="showGraph" />
-                        <label class="form-check-label" for="graphCheck">Graf</label>
+                        <label class="form-check-label" for="graphCheck">{{ $t('cas.graph') }}</label>
                     </div>
+                </div>
+                <div class="col-2">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="simCheck" v-model="showSim" />
-                        <label class="form-check-label" for="simCheck">Simulacia</label>
+                        <label class="form-check-label" for="simCheck">{{ $t('cas.simulation') }}</label>
                     </div>
+                </div>
+            </div>
+            <div class="row mb--2">
+                <div class="col">
                     <div class="form-group">
-                        <label for="dataflowSpeed">Rychlost dat</label>
+                        <label for="dataflowSpeed">{{ $t('cas.duration') }}</label>
                         <input type="range" class="form-control-range" id="dataflowSpeed" min="1" max="500" v-model="speed" />
-                        {{speed}} ms
+                        {{animationDuration}} s
                     </div>
                 </div>
             </div>
@@ -97,13 +108,13 @@ export default {
                 labels: this.labels,
                 datasets: [{
                         fill: false,
-                        label: "data one",
+                        label: this.$t('airplane.dataone'),
                         backgroundColor: "#f82599",
                         data: this.pitchAngleOnScreen
                     },
                     {
                         fill: false,
-                        label: "Data two",
+                        label: this.$t('airplane.datatwo'),
                         backgroundColor: "#f87979",
                         stroke: "#f87979",
                         data: this.backflapAngleOnScreen
@@ -129,6 +140,9 @@ export default {
         },
         canvasWidth() {
             return this.canvas.get('width')
+        },
+        animationDuration() {
+            return Math.round(((this.speed * 0.401) + Number.EPSILON) * 100) / 100
         }
     },
     watch: {

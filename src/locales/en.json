@@ -3,7 +3,8 @@
         "title": "Dzive kody",
         "language": "Language",
         "home": "Home",
-        "page": "Page"
+        "page": "Page",
+        "airplane": "Airplane"
     },
 
     "home": {
@@ -15,7 +16,21 @@
         "error": "Error"
     },
 
-    "PageNotFound":{
+    "page-not-found":{
         "text": "LOOKS LIKE YOU ARE LOST IN SPACE"
+    },
+
+    "airplane": {
+        "title": "Simulation of aircraft pitch angle",
+        "problem": "Set pitch angle in degrees",
+        "placeholder": "Angle in degrees",
+        "dataone": "Data No.1",
+        "datatwo": "Data No.2"
+    },
+
+    "cas": {
+        "graph": "Graph",
+        "simulation": "Simulation",
+        "duration": "Animation duration" 
     }
 }

@@ -3,7 +3,8 @@
         "title": "Dzive kody",
         "language": "Jazyk",
         "home": "Domov",
-        "page": "Podstránka"
+        "page": "Podstránka",
+        "airplane": "Lietadlo"
     },
 
     "home": {
@@ -15,7 +16,21 @@
         "error": "Chyba"
     },
     
-    "PageNotFound":{
+    "page-not-found": {
         "text": "STRATENÝ VO VESMÍRE"
+    },
+
+    "airplane": {
+        "title": "Simulácia náklonu lietadla",
+        "problem": "Zadajte uhol náklonu v stupňoch",
+        "placeholder": "Uhol v stupňoch",
+        "dataone": "Data č.1",
+        "datatwo": "Data č.2"
+    },
+
+    "cas": {
+        "graph": "Graf",
+        "simulation": "Simulácia",
+        "duration": "Dĺžka animácie"
     }
 }
