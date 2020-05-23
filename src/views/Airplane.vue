@@ -87,10 +87,10 @@ export default {
     },
     computed: {
         pa() {
-            return this.pitchAngle[Symbol.iterator](); // convenient for yeilding values
+            return this.pitchAngle[Symbol.iterator]() // convenient for yeilding values
         }, 
         bfa() {
-            return this.backflapAngle[Symbol.iterator]();
+            return this.backflapAngle[Symbol.iterator]()
         }, 
         datacollection() {
             return {
@@ -112,11 +112,14 @@ export default {
             };
         },
         labels() {
-            let time = [];
+            let time = []
             for (let x = 0; x <= 40.1; x += 0.1) {
-                time.push(Math.round((x + Number.EPSILON) * 100) / 100);
+                time.push(Math.round((x + Number.EPSILON) * 100) / 100)
             }
-            return time;
+            return time
+        },
+        rRad() {
+            return this.degToRad(this.r)
         },
         aircraftAngleDegrees() {
             return this.radToDeg(this.aircraftAngle)
@@ -150,23 +153,24 @@ export default {
     },
     mounted() {
         this.resizeCanvas();
-        // const ref = this.$refs.airplaneCanvas;
+        
         this.canvas = new fabric.StaticCanvas('airplaneCanvas');
         this.canvas.set({
             backgroundColor: '#cce6ff' //#cce6ff
         })
+        // posibly add background png with gradient 
         // this.canvas.setBackgroundImage('https://lh3.googleusercontent.com/proxy/DmiymvyM8hlHyLlmOc1hxzvhRljoHVf7E0cjisxTHfMUHOPiIn9_3N8gemHq_Fn9Cbq2lUNrlT8UlUQFGWnAiUABMcpBxIPaR9QQHsdzDtxLth4JP4MCog', {
         //     height: 1000,
         //     width: 1000
         // });
         fabric.Image.fromURL(require('../assets/images/cloud-superwide-500.png'), (img) => {
-            this.cloudCallback(img, 1000, 25000);
+            this.cloudCallback(img, 1000, 25000)
         })
          fabric.Image.fromURL(require('../assets/images/cloud-bent-300.png'), (img) => {
-            this.cloudCallback(img, 600, 39000);
+            this.cloudCallback(img, 600, 39000)
         })
         fabric.Image.fromURL(require('../assets/images/cloud-wide-200.png'), (img) => {
-            this.cloudCallback(img, 350, 28000);
+            this.cloudCallback(img, 350, 28000)
         })
         
         // const canvas = new fabric.Canvas('airplaneCanvas');
@@ -183,11 +187,11 @@ export default {
         });
 
         fabric.Image.fromURL(require('../assets/images/cloud-wide-900.png'), (img) => {
-            this.cloudCallback(img, 250, 15000);
+            this.cloudCallback(img, 250, 15000)
         });
 
         fabric.Image.fromURL(require('../assets/images/cloud-wide-500.png'), (img) => {
-            this.cloudCallback(img, -100, 26000); 
+            this.cloudCallback(img, -100, 26000) 
         });
 
         fabric.Image.fromURL(require('../assets/images/cloud-wide-200.png'), (img) => {
@@ -199,40 +203,40 @@ export default {
         animateImg(img, duration) {
             let imgWidth = img.get('width');
             let timeoutMultiplier = this.randomIntFromInterval(1, 6);
-            let positionMultiplier = this.randomIntFromInterval(1, 5);
-            console.log(img.getSrc() + ", timeout: " + timeoutMultiplier + ", starting position: " + positionMultiplier);
+                
+            // console.log(img.getSrc() + ", timeout: " + timeoutMultiplier);
 
             img.set({left: this.canvasWidth}).animate('left', -imgWidth, { //-this.canvasWidth // * positionMultiplier
                 onChange: () => {
                     fabric.util.requestAnimFrame(() => {
-                        this.canvas.renderAll();
+                        this.canvas.renderAll()
                     });
                 },
                 duration: duration,
                 onComplete: () => {
                     setTimeout(() => {
-                        this.animateImg(img, duration);
-                    }, duration * timeoutMultiplier);
+                        this.animateImg(img, duration)
+                    }, duration * timeoutMultiplier)
                 },
             });
         },
         cloudCallback(img, top, duration) {
-            this.canvas.add(img);
+            this.canvas.add(img)
 
             img.set({
                 top: top,
                 dirty: true
             });
 
-            let imgWidth = img.get('width');
-            let imgCanvasRatio = imgWidth / 1100;
-            let canvasScaleRatio = this.canvasWidth / 1100;
+            let imgWidth = img.get('width')
+            let imgCanvasRatio = imgWidth / 1100
+            let canvasScaleRatio = this.canvasWidth / 1100
             
-            img.scaleToWidth(this.canvasWidth * imgCanvasRatio);
+            img.scaleToWidth(this.canvasWidth * imgCanvasRatio)
 
-            img.set({top: img.get('top') * canvasScaleRatio});
+            img.set({top: img.get('top') * canvasScaleRatio})
 
-            this.animateImg(img, duration);
+            this.animateImg(img, duration)
         },
         
         aircraftCallback(img, wing) {
@@ -294,7 +298,7 @@ export default {
             axios
                 .get("/airplane", {
                     params: {
-                        r: this.r,
+                        r: this.rRad,
                         lr1: this.lastX[0],
                         lr2: this.lastX[1],
                         lr3: this.lastX[2]
@@ -336,6 +340,9 @@ export default {
         radToDeg(radians) {
             return radians * (180 / Math.PI);
         },
+        degToRad(degrees) {
+            return degrees / (180 / Math.PI)
+        },
         randomIntFromInterval(min, max) { // min and max included 
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
@@ -369,40 +376,3 @@ export default {
 }
 
 </style>
-
-//  labels: []
-//           datacollection: {
-//             datasets:
-//               [
-//                 {
-//                   label: 'data two',
-//                   backgroundColor: "#f82599",
-//                   data: [10, 29, 0, 30, 9, 8, 4]
-//                 },
-//                 {
-//                   label: 'Data One',
-//                   backgroundColor: '#f87979',
-//                   data: [40, 39, 10, 40, 39, 80, 40]
-                  
-//                 }
-//               ]
-//           }
-//     fillData () {
-//         this.datacollection = {
-//           labels: [this.getRandomInt(), this.getRandomInt()],
-//           datasets: [
-//             {
-//               label: 'Data One',
-//               backgroundColor: '#f87979',
-//               data: [this.getRandomInt(), this.getRandomInt()]
-//             }, {
-//               label: 'Data One',
-//               backgroundColor: '#f87979',
-//               data: [this.getRandomInt(), this.getRandomInt()]
-//             }
-//           ]
-//         }
-//       },
-//       getRandomInt () {
-//         return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-//       }
