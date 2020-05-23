@@ -159,39 +159,50 @@ export default {
         //     height: 1000,
         //     width: 1000
         // });
-
+        fabric.Image.fromURL(require('../assets/images/cloud-superwide-500.png'), (img) => {
+            this.cloudCallback(img, 1000, 25000);
+        })
+         fabric.Image.fromURL(require('../assets/images/cloud-bent-300.png'), (img) => {
+            this.cloudCallback(img, 600, 39000);
+        })
+        fabric.Image.fromURL(require('../assets/images/cloud-wide-200.png'), (img) => {
+            this.cloudCallback(img, 350, 28000);
+        })
         
         // const canvas = new fabric.Canvas('airplaneCanvas');
         let wing = new fabric.Path('M 41.551287,211.61352 100.01625,206.29433 C 100.01625,206.29433 139.48587,201.83989 158.48123,200.97514 \
         167.61085,200.55952 200.59156,200.74449 199.90373,209.44752 199.29528,217.14594 166.60245,222.90297 158.48122,222.2519 138.62849,220.66032 \
-        100.01625,216.93271 100.01625,216.93271 Z');
+        100.01625,216.93271 100.01625,216.93271 Z')
 
         this.flap = new fabric.Path('M 41.549177,210.8484 92.728452,207.74522 C 92.728452,207.74522 127.28364,205.086 143.90774,204.64205 151.89768,204.42867 \
-        155.34752,204.78238 154.32091,212.47298 153.5975,217.8922 150.90894,219.02382 143.80637,218.54651 126.44379,217.37977 92.677767,214.69746 92.677767,214.69746 Z');
+        155.34752,204.78238 154.32091,212.47298 153.5975,217.8922 150.90894,219.02382 143.80637,218.54651 126.44379,217.37977 92.677767,214.69746 92.677767,214.69746 Z')
         
 
         fabric.Image.fromURL(require('../assets/images/airplane_final.png'), (img) => {
-            this.aircraftCallback(img, wing);
+            this.aircraftCallback(img, wing)
         });
 
         fabric.Image.fromURL(require('../assets/images/cloud-wide-900.png'), (img) => {
-            this.canvas.add(img);
+            this.cloudCallback(img, 250, 15000);
+        });
 
-            img.set({
-                top: 700,
-                left: 1100
-            })
-            this.cloudCallback(img);
-            this.animateImg(img, 10000);
-        })
+        fabric.Image.fromURL(require('../assets/images/cloud-wide-500.png'), (img) => {
+            this.cloudCallback(img, -100, 26000); 
+        });
+
+        fabric.Image.fromURL(require('../assets/images/cloud-wide-200.png'), (img) => {
+            this.cloudCallback(img, 850, 50000); 
+        });
 
     },
     methods: {
         animateImg(img, duration) {
             let imgWidth = img.get('width');
-            console.log(imgWidth)
+            let timeoutMultiplier = this.randomIntFromInterval(1, 6);
+            let positionMultiplier = this.randomIntFromInterval(1, 5);
+            console.log(img.getSrc() + ", timeout: " + timeoutMultiplier + ", starting position: " + positionMultiplier);
 
-            img.set({left: this.canvasWidth}).animate('left', -imgWidth, { //-this.canvasWidth
+            img.set({left: this.canvasWidth}).animate('left', -imgWidth, { //-this.canvasWidth // * positionMultiplier
                 onChange: () => {
                     fabric.util.requestAnimFrame(() => {
                         this.canvas.renderAll();
@@ -201,20 +212,27 @@ export default {
                 onComplete: () => {
                     setTimeout(() => {
                         this.animateImg(img, duration);
-                    }, duration);
+                    }, duration * timeoutMultiplier);
                 },
             });
         },
-        cloudCallback(img) {
-            // todo: fix
+        cloudCallback(img, top, duration) {
+            this.canvas.add(img);
+
+            img.set({
+                top: top,
+                dirty: true
+            });
+
             let imgWidth = img.get('width');
-            let imgCanvasRatio = imgWidth / this.canvasWidth;
-            console.log(imgCanvasRatio)
+            let imgCanvasRatio = imgWidth / 1100;
+            let canvasScaleRatio = this.canvasWidth / 1100;
+            
             img.scaleToWidth(this.canvasWidth * imgCanvasRatio);
-            // img.set({
-            //     top: img.get('top')*imgCanvasRatio,
-            //     left: img.get('left')*imgCanvasRatio
-            // })
+
+            img.set({top: img.get('top') * canvasScaleRatio});
+
+            this.animateImg(img, duration);
         },
         
         aircraftCallback(img, wing) {
@@ -249,11 +267,21 @@ export default {
                 originX: 'center',
                 originY: 'center',
                 top: halfCanvas,
-                left: halfCanvas
+                left: 0
             });
             this.aircraft.scaleToWidth(this.canvasWidth * 0.85, false);
 
             this.canvas.add(this.aircraft);
+
+            this.aircraft.animate('left', halfCanvas, {
+                onChange: () => {
+                    fabric.util.requestAnimFrame(() => {
+                        this.canvas.renderAll();
+                    });
+                },
+                duration: 4500,
+                easing: fabric.util.ease.easeOutCubic
+            })
         },
         resizeCanvas() {
             let wrapper = document.getElementById('canvas-wrapper').getBoundingClientRect();
@@ -307,6 +335,9 @@ export default {
         },
         radToDeg(radians) {
             return radians * (180 / Math.PI);
+        },
+        randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min);
         }
     }
 };
