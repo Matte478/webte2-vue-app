@@ -68,7 +68,7 @@
 <script>
 import axios from "axios";
 import { fabric } from 'fabric';
-import LineChart from "./graphs/RandomGraph.js";
+import LineChart from "./graphs/Graph.js";
 
 export default {
     components: {
