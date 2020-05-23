@@ -1,0 +1,377 @@
+<template>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form @submit.prevent="submitForm">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">{{ $t('home.problem') }}</label>
+                            <input class="form-control" id="exampleFormControlTextarea1" type="text" v-model="r" name="r" :placeholder="$t('home.problem-placeholder')" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">{{ $t('home.calculate') }}</button>
+                    </form>
+                    <!-- {{labels}}
+                                {{lastX}}
+                                {{pitchAngle}}
+              {{backflapAngle}}-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="graphCheck" v-model="showGraph" />
+                        <label class="form-check-label" for="graphCheck">Graf</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="simCheck" v-model="showSim" />
+                        <label class="form-check-label" for="simCheck">Simulacia</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataflowSpeed">Rychlost dat</label>
+                        <input type="range" class="form-control-range" id="dataflowSpeed" min="1" max="500" v-model="speed" />
+                        {{speed}} ms
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="showGraph">
+                <div class="col">
+                    <div class="small">
+                        <line-chart :chart-data="datacollection"></line-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-show="showSim">
+                <div class="col">
+                    <!-- width="1000" height="750" -->
+                    <div class="canvas-wrapper" id="canvas-wrapper">
+                        <canvas id="airplaneCanvas" class="canvas"></canvas> 
+                    </div>
+                    
+                    <!-- <img id="airplaneImg" src="../assets/images/airplane_final.png" hidden/> -->
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+<script>
+import axios from "axios";
+import { fabric } from 'fabric';
+import LineChart from "./graphs/RandomGraph.js";
+
+export default {
+    components: {
+        LineChart
+    },
+    data() {
+        return {
+            r: 0.0,
+            pitchAngle: [],
+            pitchAngleOnScreen: [],
+            backflapAngle: [],
+            backflapAngleOnScreen: [],
+            lastX: [],
+
+            showGraph: true,
+            showSim: true,
+
+            speed: 100,
+
+            aircraftAngle: 0,
+            flapAngle: 0,
+
+            canvas: null,
+            aircraft: null,
+            flap: null,
+        };
+    },
+    computed: {
+        pa() {
+            return this.pitchAngle[Symbol.iterator](); // convenient for yeilding values
+        }, 
+        bfa() {
+            return this.backflapAngle[Symbol.iterator]();
+        }, 
+        datacollection() {
+            return {
+                labels: this.labels,
+                datasets: [{
+                        fill: false,
+                        label: "data one",
+                        backgroundColor: "#f82599",
+                        data: this.pitchAngleOnScreen
+                    },
+                    {
+                        fill: false,
+                        label: "Data two",
+                        backgroundColor: "#f87979",
+                        stroke: "#f87979",
+                        data: this.backflapAngleOnScreen
+                    }
+                ]
+            };
+        },
+        labels() {
+            let time = [];
+            for (let x = 0; x <= 40.1; x += 0.1) {
+                time.push(Math.round((x + Number.EPSILON) * 100) / 100);
+            }
+            return time;
+        },
+        aircraftAngleDegrees() {
+            return this.radToDeg(this.aircraftAngle)
+        },
+        flapAngleDegrees() {
+            return this.radToDeg(this.flapAngle)
+        },
+        canvasWidth() {
+            return this.canvas.get('width')
+        }
+    },
+    watch: {
+        aircraftAngle() {
+            this.aircraft.set({
+                angle: this.aircraftAngleDegrees * -1
+            });
+
+            fabric.util.requestAnimFrame(() => {
+                this.canvas.renderAll()
+            });
+        },
+        flapAngle() {
+            this.flap.set({
+                angle: this.flapAngleDegrees 
+            });
+
+            fabric.util.requestAnimFrame(() => {
+                this.canvas.renderAll()
+            });
+        }
+    },
+    mounted() {
+        this.resizeCanvas();
+        // const ref = this.$refs.airplaneCanvas;
+        this.canvas = new fabric.StaticCanvas('airplaneCanvas');
+        this.canvas.set({
+            backgroundColor: '#cce6ff' //#cce6ff
+        })
+        // this.canvas.setBackgroundImage('https://lh3.googleusercontent.com/proxy/DmiymvyM8hlHyLlmOc1hxzvhRljoHVf7E0cjisxTHfMUHOPiIn9_3N8gemHq_Fn9Cbq2lUNrlT8UlUQFGWnAiUABMcpBxIPaR9QQHsdzDtxLth4JP4MCog', {
+        //     height: 1000,
+        //     width: 1000
+        // });
+
+        
+        // const canvas = new fabric.Canvas('airplaneCanvas');
+        let wing = new fabric.Path('M 41.551287,211.61352 100.01625,206.29433 C 100.01625,206.29433 139.48587,201.83989 158.48123,200.97514 \
+        167.61085,200.55952 200.59156,200.74449 199.90373,209.44752 199.29528,217.14594 166.60245,222.90297 158.48122,222.2519 138.62849,220.66032 \
+        100.01625,216.93271 100.01625,216.93271 Z');
+
+        this.flap = new fabric.Path('M 41.549177,210.8484 92.728452,207.74522 C 92.728452,207.74522 127.28364,205.086 143.90774,204.64205 151.89768,204.42867 \
+        155.34752,204.78238 154.32091,212.47298 153.5975,217.8922 150.90894,219.02382 143.80637,218.54651 126.44379,217.37977 92.677767,214.69746 92.677767,214.69746 Z');
+        
+
+        fabric.Image.fromURL(require('../assets/images/airplane_final.png'), (img) => {
+            this.aircraftCallback(img, wing);
+        });
+
+        fabric.Image.fromURL(require('../assets/images/cloud-wide-900.png'), (img) => {
+            this.canvas.add(img);
+
+            img.set({
+                top: 700,
+                left: 1100
+            })
+            this.cloudCallback(img);
+            this.animateImg(img, 10000);
+        })
+
+    },
+    methods: {
+        animateImg(img, duration) {
+            let imgWidth = img.get('width');
+            console.log(imgWidth)
+
+            img.set({left: this.canvasWidth}).animate('left', -imgWidth, { //-this.canvasWidth
+                onChange: () => {
+                    fabric.util.requestAnimFrame(() => {
+                        this.canvas.renderAll();
+                    });
+                },
+                duration: duration,
+                onComplete: () => {
+                    setTimeout(() => {
+                        this.animateImg(img, duration);
+                    }, duration);
+                },
+            });
+        },
+        cloudCallback(img) {
+            // todo: fix
+            let imgWidth = img.get('width');
+            let imgCanvasRatio = imgWidth / this.canvasWidth;
+            console.log(imgCanvasRatio)
+            img.scaleToWidth(this.canvasWidth * imgCanvasRatio);
+            // img.set({
+            //     top: img.get('top')*imgCanvasRatio,
+            //     left: img.get('left')*imgCanvasRatio
+            // })
+        },
+        
+        aircraftCallback(img, wing) {
+            let halfCanvas = this.canvasWidth / 2;
+
+            wing.set({
+                strokeWidth: 2,
+                stroke: 'grey',
+                fill: 'lightGrey',
+                top: 160
+            });
+
+            this.flap.set({
+                centeredRotation: false,
+                originX: 'right',
+                originY: 'top',
+                fill: 'red',
+                top: 166,
+                left: 165
+            });
+
+            let dk = new fabric.Text("dzive_kody", {
+                fontFamily: 'menlo',
+                fill: 'red',
+                fontSize: 20,
+                left: 440,
+                top: 158
+            });
+
+            this.aircraft = new fabric.Group([img, this.flap, dk, wing], {
+                centeredRotation: false,
+                originX: 'center',
+                originY: 'center',
+                top: halfCanvas,
+                left: halfCanvas
+            });
+            this.aircraft.scaleToWidth(this.canvasWidth * 0.85, false);
+
+            this.canvas.add(this.aircraft);
+        },
+        resizeCanvas() {
+            let wrapper = document.getElementById('canvas-wrapper').getBoundingClientRect();
+            let htmlCanvas = document.getElementById("airplaneCanvas");
+
+            htmlCanvas.width = wrapper.width;
+            htmlCanvas.height = wrapper.height; 
+        },
+        submitForm() {
+            axios
+                .get("/airplane", {
+                    params: {
+                        r: this.r,
+                        lr1: this.lastX[0],
+                        lr2: this.lastX[1],
+                        lr3: this.lastX[2]
+                    }
+                })
+                .then(response => {
+                    let data = response.data.data;
+                    //   console.log(data)
+                    this.pitchAngleOnScreen = [];
+                    this.backflapAngleOnScreen = [];
+
+                    this.pitchAngle = data.pitchAngle;
+                    this.backflapAngle = data.backflapAngle;
+                    this.lastX = data.lastX;
+
+                    this.appendOnScreenData();
+                })
+                .catch(error => {
+                    console.log(error.response.data);
+                });
+        },
+        appendOnScreenData() {
+            let tout = () => {
+                const nextPa = this.pa.next(); // next value 
+                const nextBfa = this.bfa.next();
+                
+                if (!nextPa.done) { // done = true when the end of array reached
+                    this.pitchAngleOnScreen.push(nextPa.value); // concatenate word to the string
+                    this.aircraftAngle = Number(nextPa.value); // aircraft angle change
+
+                    this.backflapAngleOnScreen.push(nextBfa.value);
+                    this.flapAngle = Number(nextBfa.value);
+                    
+                    setTimeout(tout, this.speed);
+                }
+            }
+            setTimeout(tout, this.speed);
+        },
+        radToDeg(radians) {
+            return radians * (180 / Math.PI);
+        }
+    }
+};
+</script>
+
+<style lang="scss" scoped>
+.small {
+    max-width: 700px;
+    margin: 150px auto;
+}
+
+.form-control-range {
+    direction:rtl;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+
+    .canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+</style>
+
+//  labels: []
+//           datacollection: {
+//             datasets:
+//               [
+//                 {
+//                   label: 'data two',
+//                   backgroundColor: "#f82599",
+//                   data: [10, 29, 0, 30, 9, 8, 4]
+//                 },
+//                 {
+//                   label: 'Data One',
+//                   backgroundColor: '#f87979',
+//                   data: [40, 39, 10, 40, 39, 80, 40]
+                  
+//                 }
+//               ]
+//           }
+//     fillData () {
+//         this.datacollection = {
+//           labels: [this.getRandomInt(), this.getRandomInt()],
+//           datasets: [
+//             {
+//               label: 'Data One',
+//               backgroundColor: '#f87979',
+//               data: [this.getRandomInt(), this.getRandomInt()]
+//             }, {
+//               label: 'Data One',
+//               backgroundColor: '#f87979',
+//               data: [this.getRandomInt(), this.getRandomInt()]
+//             }
+//           ]
+//         }
+//       },
+//       getRandomInt () {
+//         return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+//       }

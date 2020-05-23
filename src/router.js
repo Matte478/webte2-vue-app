@@ -3,7 +3,10 @@ import i18n from './i18n'
 
 // Pages
 import Home from './views/Home'
+import Airplane from './views/Airplane'
 import PageNotFound from './views/404'
+
+
 
 
 const routes = [
@@ -25,7 +28,12 @@ const routes = [
         component: Home
       },
       {
-        path: '/404',
+        path: 'airplane',
+        name: 'airplane',
+        component: Airplane
+      },
+      {
+        path: '404',
         name: 'page-not-found',
         component: PageNotFound
       },

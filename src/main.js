@@ -7,6 +7,7 @@ axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'fabric'
 
 import Master from './views/Master'
 import i18n from './i18n'
