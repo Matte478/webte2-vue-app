@@ -4,7 +4,8 @@
         "language": "Language",
         "home": "Home",
         "page": "Page",
-        "airplane": "Airplane"
+        "airplane": "Airplane",
+        "pendulum": "Pendulum"
     },
 
     "home": {

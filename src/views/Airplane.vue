@@ -374,19 +374,4 @@ export default {
     direction:rtl;
 }
 
-.canvas-wrapper {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-
-    .canvas {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-}
-
 </style>

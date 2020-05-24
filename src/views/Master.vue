@@ -27,6 +27,12 @@
               class="nav-link"
             >{{ $t('nav.airplane') }}</router-link>
           </li>
+           <li class="nav-item">
+            <router-link
+              :to="{name: 'pendulum'}"
+              class="nav-link"
+            >{{ $t('nav.pendulum') }}</router-link>
+          </li>
           <li class="nav-item">
             <a
               class="nav-link"

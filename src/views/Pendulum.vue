@@ -50,6 +50,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row" v-show="showSim">
+                <div class="col">
+                    <!-- width="1000" height="750" -->
+                    <div class="canvas-wrapper" id="canvas-wrapper">
+                        <canvas id="pendulumCanvas" class="canvas"></canvas> 
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -57,7 +65,8 @@
 <script>
 import axios from "axios";
 import LineChart from "./graphs/Graph.js";
- 
+import { fabric } from 'fabric';
+
 export default {
     components: {
         LineChart
@@ -77,6 +86,11 @@ export default {
 
             showGraph: true,
             showSim: true,
+            
+            
+            canvas: null,
+            imgsLoaded: 0,
+            imgs: {}
         }
     },
     computed: {
@@ -88,8 +102,13 @@ export default {
                             // suggestedMin: 50,
                             suggestedMax: this.yMax
                 }
-            }]
-        }
+                     }]
+                },
+                elements: {
+                    point:{
+                        radius: 1
+                    }
+                }
             }
         },
         pos() {
@@ -108,6 +127,8 @@ export default {
                         fill: false,
                         label: this.$t('airplane.dataone'),
                         backgroundColor: "#f82599",
+                        borderWidth: 3,
+                        borderColor: "#f82599",
                         data: this.positionOnScreen
                     },
                     {
@@ -115,6 +136,8 @@ export default {
                         label: this.$t('airplane.datatwo'),
                         backgroundColor: "#f87979",
                         stroke: "#f87979",
+                        borderWidth: 3,
+                        borderColor: "#f87979",
                         data: this.anglePendulumOnScreen
                     }
                 ]
@@ -127,6 +150,39 @@ export default {
             }
             return time
         },
+    },
+    mounted() {
+        this.resizeCanvas();
+        this.canvas = new fabric.StaticCanvas('pendulumCanvas');
+        this.canvas.set({
+            backgroundColor: '#cce6ff' //#cce6ff
+        })
+
+        fabric.Image.fromURL(require('../assets/images/pendulum_cart.png'), (img) => {
+            this.imgs.cart = img
+            this.imgsLoaded++
+        });
+
+        fabric.Image.fromURL(require('../assets/images/pendulum_stick_fixed.png'), (img) => {
+            this.imgs.stick = img
+            this.imgsLoaded++
+        });
+
+        fabric.Image.fromURL(require('../assets/images/gear_green.png'), (img) => {
+            this.imgs.greenGear = img
+            this.imgsLoaded++
+        });
+
+        fabric.Image.fromURL(require('../assets/images/gear_red.png'), (img) => {
+            this.imgs.redGear = img
+            this.imgsLoaded++
+        });
+    },
+    watch: {
+        imgsLoaded() {
+            if (this.imgsLoaded == 4)
+                this.pendulumCallback(this.imgs)
+        }
     },
     methods: {
         submitForm() {
@@ -182,6 +238,22 @@ export default {
             }
             setTimeout(tout, this.speed);
         },
+        resizeCanvas() {
+            let wrapper = document.getElementById('canvas-wrapper').getBoundingClientRect();
+            let htmlCanvas = document.getElementById("pendulumCanvas");
+
+            htmlCanvas.width = wrapper.width;
+            htmlCanvas.height = wrapper.height; 
+        },
+        pendulumCallback() {
+            // let pedestal = new fabric.Rect({
+
+            // })
+            this.canvas.add(this.imgs.cart)
+            this.canvas.add(this.imgs.stick)
+            this.canvas.add(this.imgs.greenGear)
+            this.canvas.add(this.imgs.redGear)
+        }
     }
 }
 </script>
