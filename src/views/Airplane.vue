@@ -44,21 +44,20 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-if="showGraph">
-                <div class="col">
-                    <div class="small">
+        </div>
+        <div class="container-fluid result">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6" v-show="showGraph">
+                    <div class="result__box">
                         <line-chart :chart-data="datacollection"></line-chart>
                     </div>
                 </div>
-            </div>
-            <div class="row" v-show="showSim">
-                <div class="col">
-                    <!-- width="1000" height="750" -->
-                    <div class="canvas-wrapper" id="canvas-wrapper">
-                        <canvas id="airplaneCanvas" class="canvas"></canvas> 
+                <div class="col-md-6" v-show="showSim">
+                    <div class="result__box">
+                        <div class="canvas-wrapper" id="canvas-wrapper">
+                            <canvas id="airplaneCanvas" class="canvas"></canvas> 
+                        </div>
                     </div>
-                    
-                    <!-- <img id="airplaneImg" src="../assets/images/airplane_final.png" hidden/> -->
                 </div>
             </div>
         </div>
@@ -218,17 +217,20 @@ export default {
             let imgWidth = img.get('width');
             let timeoutMultiplier = this.randomIntFromInterval(1, 6);
                 
-            // console.log(img.getSrc() + ", timeout: " + timeoutMultiplier);
+            console.log(img.getSrc() + ", timeout: " + timeoutMultiplier);
 
-            img.set({left: this.canvasWidth}).animate('left', -imgWidth, { //-this.canvasWidth // * positionMultiplier
+            img.set({left: this.canvasWidth})
+            // todo: fix
+            img.animate('left', -imgWidth, { //-this.canvasWidth // * positionMultiplier
                 onChange: () => {
                     fabric.util.requestAnimFrame(() => {
                         this.canvas.renderAll()
                     });
-                },
+                },  
                 duration: duration,
                 onComplete: () => {
                     setTimeout(() => {
+                        // console.log(img)
                         this.animateImg(img, duration)
                     }, duration * timeoutMultiplier)
                 },
@@ -239,7 +241,6 @@ export default {
 
             img.set({
                 top: top,
-                dirty: true
             });
 
             let imgWidth = img.get('width')
@@ -270,7 +271,7 @@ export default {
                 fill: 'red',
                 top: 166,
                 left: 165
-            });
+            })
 
             let dk = new fabric.Text("dzive_kody", {
                 fontFamily: 'menlo',
@@ -286,7 +287,7 @@ export default {
                 originY: 'center',
                 top: halfCanvas,
                 left: 0
-            });
+            })
             this.aircraft.scaleToWidth(this.canvasWidth * 0.85, false);
 
             this.canvas.add(this.aircraft);
@@ -363,15 +364,3 @@ export default {
     }
 };
 </script>
-
-<style lang="scss" scoped>
-.small {
-    max-width: 700px;
-    margin: 150px auto;
-}
-
-.form-control-range {
-    direction:rtl;
-}
-
-</style>
