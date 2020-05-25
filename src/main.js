@@ -7,7 +7,6 @@ axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'fabric'
 
 import Master from './views/Master'
 import i18n from './i18n'
@@ -19,7 +18,7 @@ router.beforeEach((to, from, next) => {
 
   if (!lang || (lang != process.env.VUE_APP_I18N_LOCALE && lang != process.env.VUE_APP_I18N_FALLBACK_LOCALE)) {
     lang = process.env.VUE_APP_I18N_LOCALE
-    router.push({ path: lang+ '/404' })
+    router.push({ path: lang + '/404' })
   }
 
   i18n.locale = lang

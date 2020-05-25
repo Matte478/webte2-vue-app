@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h2 class="section__title" >{{ $t('home.title') }}</h2>
+            <h2 class="section__title">{{ $t('home.title') }}</h2>
           </div>
         </div>
         <div class="row">

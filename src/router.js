@@ -9,7 +9,6 @@ import Pendulum from './views/Pendulum'
 import Ballbeam from './views/Ballbeam'
 
 
-
 const routes = [
   {
     path: '/',
@@ -38,7 +37,7 @@ const routes = [
         name: 'pendulum',
         component: Pendulum
       },
-      { 
+      {
         path: 'ballbeam',
         name: 'ballbeam',
         component: Ballbeam
@@ -53,11 +52,8 @@ const routes = [
         // name: 'page-not-found',
         component: PageNotFound
       }
-    
     ]
   },
-
-  
 ]
 
 const router = new VueRouter({
