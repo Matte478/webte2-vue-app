@@ -11,14 +11,10 @@
                     <form @submit.prevent="submitForm" class="mb--2">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">{{ $t('airplane.problem') }}</label>
-                            <input class="form-control" id="exampleFormControlTextarea1" type="text" v-model="r" name="r" :placeholder="$t('airplane.placeholder')" />
+                            <input class="form-control" id="exampleFormControlTextarea1" type="number" step="any" v-model="r" name="r" :placeholder="$t('airplane.placeholder')" />
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">{{ $t('home.calculate') }}</button>
                     </form>
-                    <!-- {{labels}}
-                                {{lastX}}
-                                {{pitchAngle}}
-              {{backflapAngle}}-->
                 </div>
             </div>
             <div class="row mb--2">
@@ -171,11 +167,6 @@ export default {
         this.canvas.set({
             backgroundColor: '#cce6ff' //#cce6ff
         })
-        // posibly add background png with gradient 
-        // this.canvas.setBackgroundImage('https://lh3.googleusercontent.com/proxy/DmiymvyM8hlHyLlmOc1hxzvhRljoHVf7E0cjisxTHfMUHOPiIn9_3N8gemHq_Fn9Cbq2lUNrlT8UlUQFGWnAiUABMcpBxIPaR9QQHsdzDtxLth4JP4MCog', {
-        //     height: 1000,
-        //     width: 1000
-        // });
         fabric.Image.fromURL(require('../assets/images/cloud-superwide-500.png'), (img) => {
             this.cloudCallback(img, 1000, 25000)
         })
@@ -186,7 +177,6 @@ export default {
             this.cloudCallback(img, 350, 28000)
         })
         
-        // const canvas = new fabric.Canvas('airplaneCanvas');
         let wing = new fabric.Path('M 41.551287,211.61352 100.01625,206.29433 C 100.01625,206.29433 139.48587,201.83989 158.48123,200.97514 \
         167.61085,200.55952 200.59156,200.74449 199.90373,209.44752 199.29528,217.14594 166.60245,222.90297 158.48122,222.2519 138.62849,220.66032 \
         100.01625,216.93271 100.01625,216.93271 Z')
@@ -217,7 +207,6 @@ export default {
             let imgWidth = img.get('width');
             let timeoutMultiplier = this.randomIntFromInterval(1, 6);
                 
-            console.log(img.getSrc() + ", timeout: " + timeoutMultiplier);
 
             img.set({left: this.canvasWidth})
             // todo: fix
@@ -230,7 +219,6 @@ export default {
                 duration: duration,
                 onComplete: () => {
                     setTimeout(() => {
-                        // console.log(img)
                         this.animateImg(img, duration)
                     }, duration * timeoutMultiplier)
                 },
@@ -321,7 +309,7 @@ export default {
                 })
                 .then(response => {
                     let data = response.data.data;
-                    //   console.log(data)
+
                     this.pitchAngleOnScreen = [];
                     this.backflapAngleOnScreen = [];
 

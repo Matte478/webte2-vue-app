@@ -11,13 +11,10 @@
                     <form @submit.prevent="submitForm" class="mb--2">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">{{ $t('pendulum.problem') }}</label>
-                            <input class="form-control" id="exampleFormControlTextarea1" type="text" v-model="r" name="r" :placeholder="$t('pendulum.placeholder')" />
+                            <input class="form-control" id="exampleFormControlTextarea1" type="number" step="any" min="-350" max="350" v-model="r" name="r" :placeholder="$t('pendulum.placeholder')" />
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">{{ $t('home.calculate') }}</button>
                     </form>
-                    <!-- {{position}} -->
-                                <!-- {{anglePendulum}} -->
-
                 </div>
             </div>
             <div class="row mb--2">
@@ -52,7 +49,6 @@
                     </div>
                 </div>
                 <div class="col-md-6" v-show="showSim">
-                    <!-- width="1000" height="750" -->
                     <div class="result__box">
                         <div class="canvas-wrapper" id="canvas-wrapper">
                             <canvas id="pendulumCanvas" class="canvas"></canvas> 
@@ -60,9 +56,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row" v-show="showSim">
-                
-            </div> -->
         </div>
     </section>
 </template>
@@ -109,7 +102,6 @@ export default {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            // suggestedMin: 50,
                             suggestedMax: this.yMax
                         }
                     }]
@@ -160,9 +152,6 @@ export default {
             }
             return time
         },
-        // stickAngleDegrees() {
-        //     return this.radToDeg(this.stickAngle)
-        // }
     },
     mounted() {
         this.resizeCanvas();
@@ -260,11 +249,9 @@ export default {
                 
                 if (!nextPos.done) { // done = true when the end of array reached
                     this.positionOnScreen.push(nextPos.value) // concatenate word to the string
-                    // this.aircraftAngle = Number(nextPos.value); // aircraft angle change
                     this.pendulumPosition = Number(nextPos.value)
 
                     this.anglePendulumOnScreen.push(nextPen.value)
-                    // this.flapAngle = Number(nextPen.value);
                     this.stickAngle = Number(nextPen.value)
                     
                     setTimeout(tout, this.speed);
