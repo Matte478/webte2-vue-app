@@ -4,7 +4,8 @@
         "language": "Language",
         "home": "Home",
         "page": "Page",
-        "airplane": "Airplane"
+        "airplane": "Airplane",
+        "pendulum": "Pendulum"
     },
 
     "home": {
@@ -26,6 +27,12 @@
         "placeholder": "Angle in degrees",
         "dataone": "Data No.1",
         "datatwo": "Data No.2"
+    },
+
+    "pendulum": {
+        "title": "Inverted pendulum",
+        "problem": "Set position of pendulum",
+        "placeholder": "Position"
     },
 
     "cas": {

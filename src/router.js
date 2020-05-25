@@ -5,6 +5,7 @@ import i18n from './i18n'
 import Home from './views/Home'
 import Airplane from './views/Airplane'
 import PageNotFound from './views/404'
+import Pendulum from './views/Pendulum'
 
 
 
@@ -31,6 +32,11 @@ const routes = [
         path: 'airplane',
         name: 'airplane',
         component: Airplane
+      },
+      {
+        path: 'pendulum',
+        name: 'pendulum',
+        component: Pendulum
       },
       {
         path: '404',

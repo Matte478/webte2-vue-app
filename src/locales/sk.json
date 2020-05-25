@@ -4,7 +4,8 @@
         "language": "Jazyk",
         "home": "Domov",
         "page": "Podstránka",
-        "airplane": "Lietadlo"
+        "airplane": "Lietadlo",
+        "pendulum": "Kyvadlo"
     },
 
     "home": {
@@ -26,6 +27,12 @@
         "placeholder": "Uhol v stupňoch",
         "dataone": "Data č.1",
         "datatwo": "Data č.2"
+    },
+
+    "pendulum": {
+        "title": "Inverzné kyvadlo",
+        "problem": "Zadajte polohu kyvadla",
+        "placeholder": "Pozicia"
     },
 
     "cas": {
