@@ -85,6 +85,7 @@ export default {
             speed: 100,
 
             yMax: 0,
+            yMin: 0,
 
             positionOnScreen: [],
             anglePendulumOnScreen: [],
@@ -109,7 +110,7 @@ export default {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            // suggestedMin: 50,
+                            suggestedMin: this.yMin,
                             suggestedMax: this.yMax
                         }
                     }]
@@ -235,6 +236,7 @@ export default {
                 .then(response => {
                     let data = response.data.data;
                     let yMax = 0;
+                    let yMin = null;
                     this.positionOnScreen = [];
                     this.anglePendulumOnScreen = [];
 
@@ -246,7 +248,14 @@ export default {
                     if (Math.max.apply(Math,this.anglePendulum) > yMax)
                         yMax = Math.max.apply(Math,this.anglePendulum);
 
+                    if (!yMin || Math.min.apply(Math,this.position) < yMin)
+                        yMin = Math.min.apply(Math,this.position);
+                    if (!yMin || Math.min.apply(Math,this.anglePendulum) < yMin)
+                        yMin = Math.min.apply(Math,this.anglePendulum);                
+
                     this.yMax = yMax;
+                    this.yMin = yMin;
+                    
                     this.appendOnScreenData();
                 })
                 .catch(error => {

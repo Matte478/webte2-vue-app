@@ -6,7 +6,7 @@ import Home from './views/Home'
 import Airplane from './views/Airplane'
 import PageNotFound from './views/404'
 import Pendulum from './views/Pendulum'
-
+import Ballbeam from './views/Ballbeam'
 
 
 
@@ -37,6 +37,11 @@ const routes = [
         path: 'pendulum',
         name: 'pendulum',
         component: Pendulum
+      },
+      { 
+        path: 'ballbeam',
+        name: 'ballbeam',
+        component: Ballbeam
       },
       {
         path: '404',

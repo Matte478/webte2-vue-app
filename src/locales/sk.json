@@ -5,7 +5,8 @@
         "home": "Domov",
         "page": "Podstránka",
         "airplane": "Lietadlo",
-        "pendulum": "Kyvadlo"
+        "pendulum": "Kyvadlo",
+        "ballbeam": "Gulička"
     },
 
     "home": {
@@ -32,7 +33,13 @@
     "pendulum": {
         "title": "Inverzné kyvadlo",
         "problem": "Zadajte polohu kyvadla",
-        "placeholder": "Pozicia"
+        "placeholder": "Pozícia"
+    },
+
+    "ballbeam": {
+        "title": "Gulička na tyči",
+        "problem": "Zadajte pozíciu guličky",
+        "placeholder": "Pozícia"
     },
 
     "cas": {

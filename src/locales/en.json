@@ -5,7 +5,8 @@
         "home": "Home",
         "page": "Page",
         "airplane": "Airplane",
-        "pendulum": "Pendulum"
+        "pendulum": "Pendulum",
+        "ballbeam": "Ballbeam"
     },
 
     "home": {
@@ -32,6 +33,12 @@
     "pendulum": {
         "title": "Inverted pendulum",
         "problem": "Set position of pendulum",
+        "placeholder": "Position"
+    },
+    
+    "ballbeam": {
+        "title": "Ballbeam",
+        "problem": "Set position of ball",
         "placeholder": "Position"
     },
 
