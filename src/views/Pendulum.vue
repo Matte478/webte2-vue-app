@@ -212,31 +212,6 @@ export default {
       return time
     }
   },
-  mounted() {
-    this.resizeCanvas()
-    this.canvas = new fabric.StaticCanvas("pendulumCanvas")
-    this.canvas.set({
-      backgroundColor: "#cce6ff" //#cce6ff
-    })
-
-    fabric.Image.fromURL(
-      require("../assets/images/pendulum_stick_short.png"),
-      img => {
-        this.imgs.stick = img
-        this.imgsLoaded++
-      }
-    )
-
-    fabric.Image.fromURL(require("../assets/images/gear_green.png"), img => {
-      this.imgs.greenGear = img
-      this.imgsLoaded++
-    })
-
-    fabric.Image.fromURL(require("../assets/images/gear_red.png"), img => {
-      this.imgs.redGear = img
-      this.imgsLoaded++
-    })
-  },
   watch: {
     imgsLoaded() {
       if (this.imgsLoaded == 3) this.pendulumCallback(this.imgs)
@@ -261,6 +236,31 @@ export default {
         this.canvas.renderAll()
       })
     }
+  },
+  mounted() {
+    this.resizeCanvas()
+    this.canvas = new fabric.StaticCanvas("pendulumCanvas")
+    this.canvas.set({
+      backgroundColor: "#cce6ff" //#cce6ff
+    })
+
+    fabric.Image.fromURL(
+      require("../assets/images/pendulum_stick_short.png"),
+      img => {
+        this.imgs.stick = img
+        this.imgsLoaded++
+      }
+    )
+
+    fabric.Image.fromURL(require("../assets/images/gear_green.png"), img => {
+      this.imgs.greenGear = img
+      this.imgsLoaded++
+    })
+
+    fabric.Image.fromURL(require("../assets/images/gear_red.png"), img => {
+      this.imgs.redGear = img
+      this.imgsLoaded++
+    })
   },
   methods: {
     submitForm() {
