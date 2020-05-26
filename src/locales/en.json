@@ -6,7 +6,8 @@
         "page": "Page",
         "airplane": "Airplane",
         "pendulum": "Pendulum",
-        "ballbeam": "Ballbeam"
+        "ballbeam": "Ballbeam",
+        "suspension": "Suspension"
     },
 
     "home": {
@@ -40,6 +41,12 @@
         "title": "Ballbeam",
         "problem": "Set position of ball",
         "placeholder": "Position"
+    },
+
+    "suspension": {
+        "title": "Suspension",
+        "problem": "Set height of barrier",
+        "placeholder": "Height"
     },
 
     "cas": {

@@ -40,6 +40,12 @@
             >{{ $t('nav.ballbeam') }}</router-link>
           </li>
           <li class="nav-item">
+            <router-link
+              :to="{name: 'suspension'}"
+              class="nav-link"
+            >{{ $t('nav.suspension') }}</router-link>
+          </li>
+          <li class="nav-item">
             <a
               class="nav-link"
               href="#"
