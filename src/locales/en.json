@@ -38,13 +38,15 @@
     
     "ballbeam": {
         "title": "Ballbeam",
-        "problem": "Set position of ball",
+        "problem": "Set position of ball in range from ",
         "placeholder": "Position"
     },
 
     "cas": {
         "graph": "Graph",
         "simulation": "Simulation",
-        "duration": "Animation duration" 
+        "duration": "Animation duration",
+        "outofrange": "The value you have entered is out of range.", 
+        "range-join": " to "
     }
 }

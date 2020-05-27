@@ -38,13 +38,15 @@
 
     "ballbeam": {
         "title": "Gulička na tyči",
-        "problem": "Zadajte pozíciu guličky",
+        "problem": "Zadajte pozíciu guličky v rozsahu od ",
         "placeholder": "Pozícia"
     },
 
     "cas": {
         "graph": "Graf",
         "simulation": "Simulácia",
-        "duration": "Dĺžka animácie"
+        "duration": "Dĺžka animácie",
+        "outofrange": "Zadali ste hodnotu mimo stanovený rozsah.",
+        "range-join": " do "
     }
 }

@@ -13,11 +13,21 @@
             class="mb--2"
           >
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">{{ $t('ballbeam.problem') }}</label>
+              <label for="exampleFormControlTextarea1">
+                {{ 
+                  $t('ballbeam.problem') 
+                + inputRange.min 
+                + $t('cas.range-join')
+                + inputRange.max
+                }}
+              </label>
               <input
                 class="form-control"
                 id="exampleFormControlTextarea1"
-                type="text"
+                type="number"
+                step="any"
+                :min="inputRange.min"
+                :max="inputRange.max"
                 v-model="r"
                 name="r"
                 :placeholder="$t('ballbeam.placeholder')"
@@ -81,7 +91,7 @@
       <div class="row justify-content-md-center">
         <div
           class="col-md-6"
-          v-show="showGraph"
+          v-if="showGraph"
         >
           <div class="result__box">
             <line-chart
@@ -95,23 +105,7 @@
           v-show="showSim"
         >
           <div class="result__box">
-            <!-- <div
-              class="canvas-wrapper"
-              id="canvas-wrapper"
-            >
-              <canvas
-                id="ballbeamCanvas"
-                class="canvas"
-              ></canvas>
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-           <div
+            <div
               class="canvas-wrapper"
               id="canvas-wrapper"
             >
@@ -120,6 +114,7 @@
                 class="canvas"
               ></canvas>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -138,13 +133,18 @@ export default {
   },
   data() {
     return {
+      inputRange: {
+        min: -400,
+        max: 400
+      },
+
       angle: [],
       position: [],
       positionOnScreen: [],
       angleOnScreen: [],
       lastX: [],
 
-      showGraph: false, // true
+      showGraph: true, // true
       showSim: true,
 
       speed: 100,
@@ -170,12 +170,16 @@ export default {
     },
     graphOptions() {
       return {
+        showLines:  true,
+        animation: {
+          duration: 0
+        },
         scales: {
           yAxes: [
             {
               ticks: {
-                suggestedMax: this.yMax,
-                suggestedMin: this.yMin
+                max: this.yMax, //suggestedMax
+                min: this.yMin,
               }
             }
           ]
@@ -214,17 +218,15 @@ export default {
     },
     beamAngleDegrees() {
       return this.radToDeg(this.beamAngle)
-    },
-    // beamMiddle() {
-    //   return this.canvas.width / 2 
-    // }
+    }
   },
   watch: {
-    beamAngle() { //newValue, oldValue
-      // if (newValue.toFixed(3) == oldValue.toFixed(3)) return
-
+    beamAngle() { 
       this.beam.set({
         angle: this.beamAngleDegrees
+      })
+      this.gear.set({
+        angle: this.beamAngleDegrees * 50
       })
       
       fabric.util.requestAnimFrame(() => {
@@ -232,18 +234,13 @@ export default {
       })
     },
     ballPos() {
-      // if (newValue.toFixed(1) == oldValue.toFixed(1)) return
-
-      // console.log(newValue, oldValue)
-
       this.ball.set({
         left: this.ballPos
       })
-      this.gear.set({
-        angle: this.ball.left
-      })
 
-      // console.log(this.ball.left)
+      // this.gear.set({
+      //   angle: this.ball.left
+      // })
 
       fabric.util.requestAnimFrame(() => {
         this.canvas.renderAll()
@@ -257,7 +254,6 @@ export default {
     this.canvas.set({
       backgroundColor: "#cce6ff" //#cce6ff
     })
-    // this.beamMiddle = this.canvas.width / 2
 
     fabric.Image.fromURL(
       require("../assets/images/gear_green.png"),
@@ -333,19 +329,19 @@ export default {
         width: 110, 
         height: 240, 
         fill: 'black', 
-        left: this.canvas.width / 2, 
-        top: this.canvas.width,
+        left: 555, 
+        top: 1110,
       })
-      // triangle.setGradient("fill", {
-      //   x1: triangle.width,
-      //   y1: 0,
-      //   x2: 0,
-      //   y2: triangle.height,
-      //   colorStops: {
-      //     0: "#7F8C8D",
-      //     1: "#000000"
-      //   }
-      // })
+      triangle.setGradient("fill", {
+        x1: triangle.width,
+        y1: 0,
+        x2: 0,
+        y2: triangle.height,
+        colorStops: {
+          0: "#7F8C8D",
+          1: "#000000"
+        }
+      })
 
       let pole = new fabric.Rect({
         width: 1000,
@@ -354,16 +350,16 @@ export default {
         left: 55,
         top: 900
       })
-      // pole.setGradient("fill", {
-      //   x1: 0,
-      //   y1: 0,
-      //   x2: 0,
-      //   y2: pole.height,
-      //   colorStops: {
-      //     0: "#EDF1F4",
-      //     1: "#C3CBDC"
-      //   }
-      // })
+      pole.setGradient("fill", {
+        x1: 0,
+        y1: 0,
+        x2: 0,
+        y2: pole.height,
+        colorStops: {
+          0: "#EDF1F4",
+          1: "#C3CBDC"
+        }
+      })
 
       let poleStopperRight = new fabric.Rect({
         centeredRotation: false,
@@ -374,8 +370,18 @@ export default {
         fill: "black",
         left: pole.width + 55,
         top: 902,
-        // rx: 5,
-        // ry: 5
+        rx: 5,
+        ry: 5
+      })
+      poleStopperRight.setGradient("fill", {
+        x1: poleStopperRight.width,
+        y1: 0,
+        x2: 0,
+        y2: poleStopperRight.height,
+        colorStops: {
+          0: "#7F8C8D",
+          1: "#000000"
+        }
       })
       let poleStopperLeft = new fabric.Rect({
         centeredRotation: false,
@@ -386,8 +392,18 @@ export default {
         fill: "black",
         left: pole.left,
         top: 902,
-        // rx: 5,
-        // ry: 5
+        rx: 5,
+        ry: 5
+      })
+      poleStopperLeft.setGradient("fill", {
+        x1: poleStopperLeft.width,
+        y1: 0,
+        x2: 0,
+        y2: poleStopperLeft.height,
+        colorStops: {
+          0: "#7F8C8D",
+          1: "#000000"
+        }
       })
 
       this.ball = new fabric.Circle({
@@ -400,16 +416,16 @@ export default {
         // fill: 'lightGrey',
         stroke: "#C3CBDC"
       })
-      // this.ball.setGradient("fill", {
-      //   x1: this.ball.width, //* 0.4
-      //   y1: 0, //ball.height * 0.6
-      //   x2: 0,
-      //   y2: this.ball.height,
-      //   colorStops: {
-      //     0: "#EDF1F4",
-      //     1: "#C3CBDC"
-      //   }
-      // })
+      this.ball.setGradient("fill", {
+        x1: this.ball.width, //* 0.4
+        y1: 0, //ball.height * 0.6
+        x2: 0,
+        y2: this.ball.height,
+        colorStops: {
+          0: "#EDF1F4",
+          1: "#C3CBDC"
+        }
+      })
 
       let screw = new fabric.Circle({
         centeredRotation: false,
@@ -441,41 +457,42 @@ export default {
       })
       this.gear.scaleToWidth(screw.width * 5)
 
+      let gearScrew = new fabric.Circle({
+        centeredRotation: false,
+        originX: "center",
+        originY: "center",
+        top: this.gear.top,
+        left: this.gear.left,
+        radius: 3,
+        fill: 'lightGrey',
+        stroke: "grey"
+      })
+
       this.beam = new fabric.Group([this.ball, pole, poleStopperRight, poleStopperLeft], {
         centeredRotation: false,
         originX: "center",
         originY: "bottom",
       })
       
-      let mainGroup = new fabric.Group([this.beam, triangle, screw, this.gear], {
+      let mainGroup = new fabric.Group([this.beam, triangle, screw, this.gear,  gearScrew], {
         centeredRotation: false,
         originX: "center",
         originY: "bottom",
         top: this.canvas.width,
-        left: this.canvas.width / 2
+        left: this.canvas.width / 2,
+        dirty: true,
+        objectCaching: false
       })
       mainGroup.scaleToWidth(this.canvas.width * 0.925)
-      // this.ball.set({
-      //   left: this.ball.left + 200
-      // }) 
-
-      // this.beam.set({
-      //   angle: 20
-      // })
-      this.canvas.add(this.ball)
-      this.canvas.add(pole)
-      this.canvas.add(poleStopperRight)
-      this.canvas.add(poleStopperLeft)
-      this.canvas.add(this.beam)
-      this.canvas.add(triangle)
-      this.canvas.add(screw)
-      this.canvas.add(this.gear)
  
       this.canvas.add(mainGroup)
     },
     radToDeg(radians) {
       return radians * (180 / Math.PI)
-    } 
+    },
+    // isOutOfRange() {
+    //   return this.r < this.inputRange.min || this.r > this.inputRange.max
+    // } 
   }
 }
 </script>
