@@ -12,7 +12,10 @@ export default {
   },
   watch: {
     options() {
-      this.renderChart(this.chartData, this.options)
+      window.requestAnimationFrame(() => {
+        this.renderChart(this.chartData, this.options)
+      })
+      // this.update()
     }
   }
 }
