@@ -3,8 +3,6 @@ import VueRouter from 'vue-router'
 import router from './router'
 import axios from 'axios'
 
-axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
-
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -12,6 +10,9 @@ import Master from './views/Master'
 import i18n from './i18n'
 
 Vue.config.productionTip = false
+
+axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
+axios.defaults.headers.common['Authorization'] = process.env.VUE_APP_API_KEY
 
 router.beforeEach((to, from, next) => {
   let lang = to.params.lang
