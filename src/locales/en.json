@@ -24,22 +24,25 @@
 
     "airplane": {
         "title": "Simulation of aircraft pitch angle",
-        "problem": "Set pitch angle in degrees",
+        "problem": "Set pitch angle in degrees in range from ",
         "placeholder": "Angle in degrees",
-        "dataone": "Data No.1",
-        "datatwo": "Data No.2"
+        "dataone": "Aircraft pitch angle",
+        "datatwo": "Backflap angle"
     },
 
     "pendulum": {
         "title": "Inverted pendulum",
         "problem": "Set position of pendulum",
-        "placeholder": "Position"
+        "placeholder": "Position",
+        "dataone": "Pendulum position",
+        "datatwo": "Pendulum angle"
     },
     
     "ballbeam": {
         "title": "Ballbeam",
         "problem": "Set position of ball in range from ",
-        "placeholder": "Position"
+        "placeholder": "Position",
+        "dataone": "Ball position"
     },
 
     "cas": {

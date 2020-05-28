@@ -24,22 +24,25 @@
 
     "airplane": {
         "title": "Simulácia náklonu lietadla",
-        "problem": "Zadajte uhol náklonu v stupňoch",
+        "problem": "Zadajte uhol náklonu v stupňoch v rozsahu od ",
         "placeholder": "Uhol v stupňoch",
-        "dataone": "Data č.1",
-        "datatwo": "Data č.2"
+        "dataone": "Náklon lietadla",
+        "datatwo": "Náklon klapky"
     },
 
     "pendulum": {
         "title": "Inverzné kyvadlo",
         "problem": "Zadajte polohu kyvadla",
-        "placeholder": "Pozícia"
+        "placeholder": "Pozícia",
+        "dataone": "Pozícia kyvadla",
+        "datatwo": "Uhol kyvadla"
     },
 
     "ballbeam": {
         "title": "Gulička na tyči",
         "problem": "Zadajte pozíciu guličky v rozsahu od ",
-        "placeholder": "Pozícia"
+        "placeholder": "Pozícia",
+        "dataone": "Pozcícia guličky"
     },
 
     "cas": {

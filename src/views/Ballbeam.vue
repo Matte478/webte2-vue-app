@@ -200,7 +200,7 @@ export default {
         datasets: [
           {
             fill: false,
-            label: this.$t("airplane.dataone"),
+            label: this.$t("ballbeam.dataone"),
             backgroundColor: "#f82599",
             borderWidth: 3,
             borderColor: "#f82599",

@@ -13,12 +13,21 @@
             class="mb--2"
           >
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">{{ $t('airplane.problem') }}</label>
+              <label for="exampleFormControlTextarea1">
+                {{ 
+                  $t('airplane.problem') 
+                + inputRange.min
+                + $t('cas.range-join')
+                + inputRange.max
+                }}
+              </label>
               <input
                 class="form-control"
                 id="exampleFormControlTextarea1"
                 type="number"
                 step="any"
+                :min="inputRange.min"
+                :max="inputRange.max"
                 v-model="r"
                 name="r"
                 :placeholder="$t('airplane.placeholder')"
@@ -69,8 +78,8 @@
               type="range"
               class="form-control-range"
               id="dataflowSpeed"
-              min="1"
-              max="500"
+              min="50"
+              max="100"
               v-model="speed"
             />
             {{animationDuration}} s
@@ -82,7 +91,7 @@
       <div class="row justify-content-md-center">
         <div
           class="col-md-6"
-          v-show="showGraph"
+          v-if="showGraph"
         >
           <div class="result__box">
             <line-chart :chart-data="datacollection"></line-chart>
@@ -120,6 +129,11 @@ export default {
   },
   data() {
     return {
+      inputRange: {
+        min: -45,
+        max: 45
+      },
+
       r: 0.0,
       pitchAngle: [],
       pitchAngleOnScreen: [],
@@ -130,7 +144,7 @@ export default {
       showGraph: true,
       showSim: true,
 
-      speed: 100,
+      speed: 50,
 
       aircraftAngle: 0,
       flapAngle: 0,
@@ -155,13 +169,16 @@ export default {
             fill: false,
             label: this.$t("airplane.dataone"),
             backgroundColor: "#f82599",
+            borderWidth: 3,
+            borderColor: "#f82599",
             data: this.pitchAngleOnScreen
           },
           {
             fill: false,
             label: this.$t("airplane.datatwo"),
             backgroundColor: "#f87979",
-            stroke: "#f87979",
+            borderWidth: 3,
+            borderColor: "#f87979",
             data: this.backflapAngleOnScreen
           }
         ]
@@ -196,16 +213,14 @@ export default {
         angle: this.aircraftAngleDegrees * -1
       })
 
-      fabric.util.requestAnimFrame(() => {
-        this.canvas.renderAll()
-      })
-    },
-    flapAngle() {
       this.flap.set({
         angle: this.flapAngleDegrees
       })
 
-      fabric.util.requestAnimFrame(() => {
+      // fabric.util.requestAnimFrame(() => {
+      //   this.canvas.renderAll()
+      // })
+      window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
     }
@@ -220,7 +235,7 @@ export default {
     fabric.Image.fromURL(
       require("../assets/images/cloud-superwide-500.png"),
       img => {
-        this.cloudCallback(img, 1000, 25000)
+        this.cloudCallback(img, 500, 25000)
       }
     )
     fabric.Image.fromURL(
@@ -276,24 +291,32 @@ export default {
     )
   },
   methods: {
-    animateImg(img, duration) {
-      let imgWidth = img.get("width")
-      let timeoutMultiplier = this.randomIntFromInterval(1, 6)
+    animateImg(img, hidingWidth, duration) {
+      
+      // let timeoutMultiplier = this.randomIntFromInterval(1, 6)
 
-      img.set({ left: this.canvasWidth })
+      
       // todo: fix
-      img.animate("left", -imgWidth, {
+      img.animate("left", -hidingWidth, {
         //-this.canvasWidth // * positionMultiplier
         onChange: () => {
-          fabric.util.requestAnimFrame(() => {
+          // fabric.util.requestAnimFrame(() => {
+          //   this.canvas.renderAll()
+          // })
+          window.requestAnimationFrame(() => {
             this.canvas.renderAll()
           })
         },
         duration: duration,
         onComplete: () => {
+          img.set({ 
+            top: this.randomIntFromInterval(-50, this.canvasWidth + 50),
+            left: this.canvasWidth
+           })
+
           setTimeout(() => {
-            this.animateImg(img, duration)
-          }, duration * timeoutMultiplier)
+            this.animateImg(img, hidingWidth, duration)
+          }, duration)
         }
       })
     },
@@ -301,18 +324,20 @@ export default {
       this.canvas.add(img)
 
       img.set({
-        top: top
+        top: top,
+        left: this.canvasWidth,
+        dirty: true,
+        objectCaching: false
       })
 
       let imgWidth = img.get("width")
       let imgCanvasRatio = imgWidth / 1100
-      let canvasScaleRatio = this.canvasWidth / 1100
+      // let canvasScaleRatio = this.canvas.width / 1100
 
       img.scaleToWidth(this.canvasWidth * imgCanvasRatio)
 
-      img.set({ top: img.get("top") * canvasScaleRatio })
-
-      this.animateImg(img, duration)
+      let hidingWidth = img.scaleX * img.width
+      this.animateImg(img, hidingWidth, duration)
     },
 
     aircraftCallback(img, wing) {
