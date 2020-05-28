@@ -13,14 +13,21 @@
             class="mb--2"
           >
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">{{ $t('pendulum.problem') }}</label>
+              <label for="exampleFormControlTextarea1">
+                {{ 
+                  $t('pendulum.problem')
+                + inputRange.min
+                + $t('cas.range-join')
+                + inputRange.max
+                }}
+                  </label>
               <input
                 class="form-control"
                 id="exampleFormControlTextarea1"
                 type="number"
                 step="any"
-                min="-350"
-                max="350"
+                :min="inputRange.min"
+                :max="inputRange.max"
                 v-model="r"
                 name="r"
                 :placeholder="$t('pendulum.placeholder')"
@@ -71,8 +78,8 @@
               type="range"
               class="form-control-range"
               id="dataflowSpeed"
-              min="1"
-              max="500"
+              min="50"
+              max="100"
               v-model="speed"
             />
             {{animationDuration}} s
@@ -125,11 +132,16 @@ export default {
   },
   data() {
     return {
+      inputRange: {
+        min: -350,
+        max: 350
+      },
+
       position: [],
       anglePendulum: [],
 
       r: 0,
-      speed: 100,
+      speed: 50,
 
       yMax: 0,
       yMin: 0,
@@ -158,8 +170,8 @@ export default {
           yAxes: [
             {
               ticks: {
-                suggestedMin: this.yMin,
-                suggestedMax: this.yMax
+                min: this.yMin,
+                max: this.yMax
               }
             }
           ]
@@ -223,19 +235,24 @@ export default {
         left: this.pendulumZero + this.pendulumPosition
       })
 
-      fabric.util.requestAnimFrame(() => {
-        this.canvas.renderAll()
-      })
-    },
-    stickAngle() {
       this.stick.set({
         angle: this.stickAngle
       })
 
-      fabric.util.requestAnimFrame(() => {
+      window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
-    }
+      // fabric.util.requestAnimFrame(() => {
+      //   this.canvas.renderAll()
+      // })
+    },
+    // stickAngle() {
+      
+
+    //   fabric.util.requestAnimFrame(() => {
+    //     this.canvas.renderAll()
+    //   })
+    // }
   },
   mounted() {
     this.resizeCanvas()

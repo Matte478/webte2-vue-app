@@ -23,7 +23,7 @@
     },
 
     "airplane": {
-        "title": "Simulation of aircraft pitch angle",
+        "title": "Aircraft pitch angle",
         "problem": "Set pitch angle in degrees in range from ",
         "placeholder": "Angle in degrees",
         "dataone": "Aircraft pitch angle",
@@ -32,7 +32,7 @@
 
     "pendulum": {
         "title": "Inverted pendulum",
-        "problem": "Set position of pendulum",
+        "problem": "Set position of pendulum in range from ",
         "placeholder": "Position",
         "dataone": "Pendulum position",
         "datatwo": "Pendulum angle"

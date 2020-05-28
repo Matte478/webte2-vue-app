@@ -78,8 +78,8 @@
               type="range"
               class="form-control-range"
               id="dataflowSpeed"
-              min="1"
-              max="500"
+              min="50"
+              max="100"
               v-model="speed"
             />
             {{animationDuration}} s
@@ -147,7 +147,7 @@ export default {
       showGraph: true, // true
       showSim: true,
 
-      speed: 100,
+      speed: 50,
       r: 0,
       yMax: 0,
       yMin: null,
@@ -228,21 +228,12 @@ export default {
       this.gear.set({
         angle: this.beamAngleDegrees * 50
       })
-      
-      fabric.util.requestAnimFrame(() => {
-        this.canvas.renderAll()
-      })
-    },
-    ballPos() {
+
       this.ball.set({
         left: this.ballPos
       })
-
-      // this.gear.set({
-      //   angle: this.ball.left
-      // })
-
-      fabric.util.requestAnimFrame(() => {
+      
+      window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
     }

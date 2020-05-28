@@ -23,7 +23,7 @@
     },
 
     "airplane": {
-        "title": "Simulácia náklonu lietadla",
+        "title": "Náklon lietadla",
         "problem": "Zadajte uhol náklonu v stupňoch v rozsahu od ",
         "placeholder": "Uhol v stupňoch",
         "dataone": "Náklon lietadla",
@@ -32,7 +32,7 @@
 
     "pendulum": {
         "title": "Inverzné kyvadlo",
-        "problem": "Zadajte polohu kyvadla",
+        "problem": "Zadajte polohu kyvadla v rozsahu od ",
         "placeholder": "Pozícia",
         "dataone": "Pozícia kyvadla",
         "datatwo": "Uhol kyvadla"
