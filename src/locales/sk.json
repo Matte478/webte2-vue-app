@@ -6,7 +6,8 @@
         "page": "Podstránka",
         "airplane": "Lietadlo",
         "pendulum": "Kyvadlo",
-        "ballbeam": "Gulička"
+        "ballbeam": "Gulička",
+        "suspension": "Tlmič"
     },
 
     "home": {
@@ -43,6 +44,12 @@
         "problem": "Zadajte pozíciu guličky v rozsahu od ",
         "placeholder": "Pozícia",
         "dataone": "Pozcícia guličky"
+    },
+
+    "suspension": {
+        "title": "Tlmič kolesa",
+        "problem": "Zadajte výšku skokovej prekážky",
+        "placeholder": "Výška"
     },
 
     "cas": {
