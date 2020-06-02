@@ -7,7 +7,8 @@
         "airplane": "Airplane",
         "pendulum": "Pendulum",
         "ballbeam": "Ballbeam",
-        "suspension": "Suspension"
+        "suspension": "Suspension",
+        "statistics": "Statistics"
     },
 
     "home": {
@@ -58,5 +59,11 @@
         "duration": "Animation duration",
         "outofrange": "The value you have entered is out of range.", 
         "range-join": " to "
+    },
+
+    "statistics": {
+        "title": "Statistics",
+        "export": "Download API usage logs",
+        "most-used": "The most used API service"
     }
 }

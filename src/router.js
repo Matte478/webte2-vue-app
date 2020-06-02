@@ -8,6 +8,7 @@ import PageNotFound from './views/404'
 import Pendulum from './views/Pendulum'
 import Ballbeam from './views/Ballbeam'
 import Suspension from './views/Suspension'
+import Statistics from './views/Statistics'
 
 
 const routes = [
@@ -47,6 +48,11 @@ const routes = [
         path: 'suspension',
         name: 'suspension',
         component: Suspension
+      },
+      {
+        path: 'statistics',
+        name: 'statistics',
+        component: Statistics
       },
       {
         path: '404',

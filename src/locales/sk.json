@@ -7,7 +7,8 @@
         "airplane": "Lietadlo",
         "pendulum": "Kyvadlo",
         "ballbeam": "Gulička",
-        "suspension": "Tlmič"
+        "suspension": "Tlmič",
+        "statistics": "Štatistika"
     },
 
     "home": {
@@ -58,5 +59,11 @@
         "duration": "Dĺžka animácie",
         "outofrange": "Zadali ste hodnotu mimo stanovený rozsah.",
         "range-join": " do "
+    },
+
+    "statistics": {
+        "title": "Štatistika",
+        "export": "Stiahnutie logov využitia API",
+        "most-used": "Najviac využívaná API služba"
     }
 }

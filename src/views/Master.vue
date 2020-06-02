@@ -46,10 +46,10 @@
             >{{ $t('nav.suspension') }}</router-link>
           </li>
           <li class="nav-item">
-            <a
+            <router-link
+              :to="{name: 'statistics'}"
               class="nav-link"
-              href="#"
-            > {{ $t('nav.page') }} </a>
+            >{{ $t('nav.statistics') }}</router-link>
           </li>
         </ul>
         <span class="navbar-text white-text">
