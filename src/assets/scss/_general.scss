@@ -72,4 +72,29 @@ img {
     direction: rtl;
 }
 
+.person {
+    padding: 2rem 1rem;
+    margin-bottom: 2em;
+    text-align: center;
+    background: #fff;
+    box-shadow: 7px 9.5px 10px 0 rgba(21, 30, 67, 0.03);
 
+    &__name {
+        margin-bottom: 0.5em;
+        font-size: 1.2rem;
+        color: $color-primary-1;
+        font-weight: bold;
+    }
+
+    &__email {
+        text-decoration: none;
+        color: $color-primary-1;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            color: lighten($color-primary-1, 20%);
+            text-decoration: none;
+        }
+    }
+}

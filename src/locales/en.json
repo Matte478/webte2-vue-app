@@ -8,7 +8,8 @@
         "pendulum": "Pendulum",
         "ballbeam": "Ballbeam",
         "suspension": "Suspension",
-        "statistics": "Statistics"
+        "statistics": "Statistics",
+        "team": "Team"
     },
 
     "home": {
@@ -70,5 +71,10 @@
             "title": "The most used API service",
             "desc": "So far, users have used the <span class='font-weight-bold'>{service}</span> service the most. They used it <span class='font-weight-bold'>{count} times</span>."
         }
+    },
+
+    "team": {
+        "title": "Our team and division of labor",
+        "contact": "Contact me"
     }
 }

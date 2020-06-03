@@ -51,6 +51,12 @@
               class="nav-link"
             >{{ $t('nav.statistics') }}</router-link>
           </li>
+          <li class="nav-item">
+            <router-link
+              :to="{name: 'team'}"
+              class="nav-link"
+            >{{ $t('nav.team') }}</router-link>
+          </li>
         </ul>
         <span class="navbar-text white-text">
           <ul class="navbar-nav mr-auto">

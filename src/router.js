@@ -9,6 +9,7 @@ import Pendulum from './views/Pendulum'
 import Ballbeam from './views/Ballbeam'
 import Suspension from './views/Suspension'
 import Statistics from './views/Statistics'
+import Team from './views/Team'
 
 
 const routes = [
@@ -53,6 +54,11 @@ const routes = [
         path: 'statistics',
         name: 'statistics',
         component: Statistics
+      },
+      {
+        path: 'team',
+        name: 'team',
+        component: Team
       },
       {
         path: '404',
