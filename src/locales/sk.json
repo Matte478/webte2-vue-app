@@ -64,6 +64,10 @@
     "statistics": {
         "title": "Štatistika",
         "export": "Stiahnutie logov využitia API",
-        "most-used": "Najviac využívaná API služba"
+        "most-used": {
+            "title": "Najviac využívaná API služba",
+            "desc": "Užívatelia doteraz najviac využívali službu {service}, ktorú využili {count} krát."
+        }
+        
     }
 }

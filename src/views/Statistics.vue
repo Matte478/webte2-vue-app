@@ -32,13 +32,16 @@
 
       <div class="row">
         <div class="col">
-          <h3>{{ $t('statistics.most-used') }}</h3>
+          <h3>{{ $t('statistics.most-used.title') }}</h3>
         </div>
       </div>
 
       <div class="row">
-        <div class="col">
-          // TODO API CALL
+        <div class="col" v-if="mostUsedService">
+          {{ $t('statistics.most-used.desc', {
+            'service': mostUsedService.service.sk,
+            'count': mostUsedService.count
+          }) }}
         </div>
       </div>
     </div>
@@ -52,10 +55,27 @@ import axios from "axios"
 
 export default {
   data() {
-    return {}
+    return {
+      mostUsedService: {}
+    }
+  },
+
+  created() {
+    this.loadMostUsedService()
   },
 
   methods: {
+    loadMostUsedService() {
+      axios
+        .get("/most-used")
+        .then(response => {
+          this.mostUsedService = response.data.data
+        })
+        .catch(error => {
+          console.log(error.response.data)
+        })
+    },
+
     download(format) {
       console.log(format)
       axios
