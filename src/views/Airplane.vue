@@ -161,6 +161,29 @@ export default {
     bfa() {
       return this.backflapAngle[Symbol.iterator]()
     },
+    graphOptions() {
+      return {
+        showLines:  true,
+        animation: {
+          duration: 0
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                suggestedMin: this.yMin,
+                suggestedMax: this.yMax, //suggestedMax
+              }
+            }
+          ]
+        },
+        elements: {
+          point: {
+            radius: 1
+          }
+        }
+      }
+    },
     datacollection() {
       return {
         labels: this.labels,
@@ -217,9 +240,6 @@ export default {
         angle: this.flapAngleDegrees
       })
 
-      // fabric.util.requestAnimFrame(() => {
-      //   this.canvas.renderAll()
-      // })
       window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
@@ -292,17 +312,9 @@ export default {
   },
   methods: {
     animateImg(img, hidingWidth, duration) {
-      
-      // let timeoutMultiplier = this.randomIntFromInterval(1, 6)
 
-      
-      // todo: fix
       img.animate("left", -hidingWidth, {
-        //-this.canvasWidth // * positionMultiplier
         onChange: () => {
-          // fabric.util.requestAnimFrame(() => {
-          //   this.canvas.renderAll()
-          // })
           window.requestAnimationFrame(() => {
             this.canvas.renderAll()
           })

@@ -178,8 +178,8 @@ export default {
           yAxes: [
             {
               ticks: {
-                max: this.yMax, //suggestedMax
-                min: this.yMin,
+                suggestedMin: this.yMin,
+                suggestedMax: this.yMax, //suggestedMax
               }
             }
           ]
