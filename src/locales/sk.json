@@ -48,8 +48,10 @@
 
     "suspension": {
         "title": "Tlmič kolesa",
-        "problem": "Zadajte výšku skokovej prekážky",
-        "placeholder": "Výška"
+        "problem": "Zadajte výšku skokovej prekážky v rozsahu od ",
+        "placeholder": "Výška",
+        "dataone": "Pozícia karosérie",
+        "datatwo": "Pozícia kolesa"
     },
 
     "cas": {

@@ -170,8 +170,8 @@ export default {
           yAxes: [
             {
               ticks: {
-                min: this.yMin,
-                max: this.yMax
+                suggestedMin: this.yMin,
+                suggestedMax  : this.yMax
               }
             }
           ]
@@ -198,7 +198,7 @@ export default {
         datasets: [
           {
             fill: false,
-            label: this.$t("airplane.dataone"),
+            label: this.$t("pendulum.dataone"),
             backgroundColor: "#f82599",
             borderWidth: 3,
             borderColor: "#f82599",
@@ -206,7 +206,7 @@ export default {
           },
           {
             fill: false,
-            label: this.$t("airplane.datatwo"),
+            label: this.$t("pendulum.datatwo"),
             backgroundColor: "#f87979",
             stroke: "#f87979",
             borderWidth: 3,
@@ -226,7 +226,7 @@ export default {
   },
   watch: {
     imgsLoaded() {
-      if (this.imgsLoaded == 3) this.pendulumCallback(this.imgs)
+      if (this.imgsLoaded == 3) this.pendulumCallback()
     },
     pendulumPosition() {
       this.pendulum.item(2).angle = this.pendulum.left
@@ -242,17 +242,7 @@ export default {
       window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
-      // fabric.util.requestAnimFrame(() => {
-      //   this.canvas.renderAll()
-      // })
-    },
-    // stickAngle() {
-      
-
-    //   fabric.util.requestAnimFrame(() => {
-    //     this.canvas.renderAll()
-    //   })
-    // }
+    }
   },
   mounted() {
     this.resizeCanvas()
@@ -511,7 +501,6 @@ export default {
         }
       )
       mainGroup.scaleToWidth(canvasWidth)
-      // this.pendulum.left += 300
       this.canvas.add(mainGroup)
     }
   }

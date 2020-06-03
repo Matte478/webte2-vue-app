@@ -48,8 +48,10 @@
 
     "suspension": {
         "title": "Suspension",
-        "problem": "Set height of barrier",
-        "placeholder": "Height"
+        "problem": "Set height of obstacle in range from ",
+        "placeholder": "Height",
+        "dataone": "Chasis position",
+        "datatwo": "Wheel position"
     },
 
     "cas": {

@@ -15,7 +15,6 @@ export default {
       window.requestAnimationFrame(() => {
         this.renderChart(this.chartData, this.options)
       })
-      // this.update()
     }
   }
 }
