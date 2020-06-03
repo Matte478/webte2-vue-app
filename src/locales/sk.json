@@ -68,7 +68,7 @@
         "export": "Stiahnutie logov využitia API",
         "most-used": {
             "title": "Najviac využívaná API služba",
-            "desc": "Užívatelia doteraz najviac využívali službu {service}, ktorú využili {count} krát."
+            "desc": "Užívatelia doteraz najviac využívali službu <span class='font-weight-bold'>{service}</span>, ktorú využili <span class='font-weight-bold'>{count} krát</span>."
         }
         
     }

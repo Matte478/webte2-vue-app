@@ -37,11 +37,14 @@
       </div>
 
       <div class="row">
-        <div class="col" v-if="mostUsedService">
-          {{ $t('statistics.most-used.desc', {
-            'service': mostUsedService.service.sk,
+        <div
+          class="col"
+          v-if="Object.keys(mostUsedService).length"
+        >
+          <p v-html="$t('statistics.most-used.desc', {
+            'service': mostUsedService.service[$i18n.locale],
             'count': mostUsedService.count
-          }) }}
+          })"></p>
         </div>
       </div>
     </div>
@@ -77,7 +80,6 @@ export default {
     },
 
     download(format) {
-      console.log(format)
       axios
         .get(`logs/export/${format}`, {
           responseType: "blob"
