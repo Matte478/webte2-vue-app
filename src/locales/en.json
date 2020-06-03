@@ -66,6 +66,9 @@
     "statistics": {
         "title": "Statistics",
         "export": "Download API usage logs",
-        "most-used": "The most used API service"
+        "most-used": {
+            "title": "The most used API service",
+            "desc": "So far, users have used the <span class='font-weight-bold'>{service}</span> service the most. They used it <span class='font-weight-bold'>{count} times</span>."
+        }
     }
 }
