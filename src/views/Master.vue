@@ -85,6 +85,14 @@
     >
       <router-view />
     </transition>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="col">
+          <span class="brand">dzive_kody</span> | Copyright © 2020 | {{ $t('footer.rights') }}
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 

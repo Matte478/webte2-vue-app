@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="row mb--2">
+      <div class="row mb--2 justify-content-center">
         <div class="col-1">
           <button
             type="button"
@@ -31,20 +31,34 @@
       </div>
 
       <div class="row">
-        <div class="col">
-          <h3>{{ $t('statistics.most-used.title') }}</h3>
+        <div
+          class="col"
+          v-if="statistics.length"
+        >
+          <h3>{{ $t('statistics.statistics') }}</h3>
         </div>
       </div>
 
       <div class="row">
-        <div
-          class="col"
-          v-if="Object.keys(mostUsedService).length"
-        >
-          <p v-html="$t('statistics.most-used.desc', {
-            'service': mostUsedService.service[$i18n.locale],
-            'count': mostUsedService.count
-          })"></p>
+        <div class="col">
+          <div
+            class="table-wrapper"
+            v-if="statistics.length"
+          >
+            <table class="table layout-fixed">
+              <tr>
+                <th>{{ $t('statistics.service') }}</th>
+                <th>{{ $t('statistics.count') }}</th>
+              </tr>
+              <tr
+                v-for="(stat, index) in statistics"
+                :key="index"
+              >
+                <td>{{ stat.service[$i18n.locale] }}</td>
+                <td>{{ stat.count }}</td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +73,7 @@ import axios from "axios"
 export default {
   data() {
     return {
-      mostUsedService: {}
+      statistics: []
     }
   },
 
@@ -70,9 +84,9 @@ export default {
   methods: {
     loadMostUsedService() {
       axios
-        .get("/most-used")
+        .get("/statistics")
         .then(response => {
-          this.mostUsedService = response.data.data
+          this.statistics = response.data.data
         })
         .catch(error => {
           console.log(error.response.data)

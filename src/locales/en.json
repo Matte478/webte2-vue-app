@@ -67,6 +67,9 @@
     "statistics": {
         "title": "Statistics",
         "export": "Download API usage logs",
+        "service": "API Service",
+        "count": "Count of API calls",
+        "statistics": "API service usage statistics",
         "most-used": {
             "title": "The most used API service",
             "desc": "So far, users have used the <span class='font-weight-bold'>{service}</span> service the most. They used it <span class='font-weight-bold'>{count} times</span>."
@@ -86,5 +89,9 @@
             ["Inverted pendulum", "Aircraft pitch angle", "Ballbeam and calculator", "Suspension"],
             ["404 page", "Optimization of animations", "Multilanguage, Statistics", ""]
         ]
+    },
+
+    "footer": {
+        "rights": "All rights reserved."
     }
 }

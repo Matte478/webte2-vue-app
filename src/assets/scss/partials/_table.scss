@@ -9,11 +9,15 @@
     width: 100%;
     text-align: center;
 
-tr {
-    &:hover {
-        background-color: rgba($color-primary-1, 0.1);
+    &.layout-fixed {
+        table-layout: fixed;
     }
-}
+
+    tr {
+        &:hover {
+            background-color: rgba($color-primary-1, 0.1);
+        }
+    }
 
     th {
         color: $color-primary-1;

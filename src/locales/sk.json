@@ -67,6 +67,9 @@
     "statistics": {
         "title": "Štatistika",
         "export": "Stiahnutie logov využitia API",
+        "service": "API služba",
+        "count": "Počet API volaní",
+        "statistics": "Štatistika využitia API služieb",
         "most-used": {
             "title": "Najviac využívaná API služba",
             "desc": "Užívatelia doteraz najviac využívali službu <span class='font-weight-bold'>{service}</span>, ktorú využili <span class='font-weight-bold'>{count} krát</span>."
@@ -86,5 +89,9 @@
             ["Inverzné kyvadlo", "Náklon lietadla", "Gulička na tyči a kalkulačka", "Tlmič kolesa"],
             ["404", "Optimalizácia animácií", "Multijazyčnosť, štatistika", ""]
         ]
+    },
+
+    "footer": {
+        "rights": "Všetky práva vyhradené."
     }
 }
