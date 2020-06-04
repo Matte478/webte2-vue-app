@@ -1,6 +1,6 @@
 {
     "nav": {
-        "title": "Dzive kody",
+        "title": "dzive_kody",
         "language": "Language",
         "home": "Home",
         "page": "Page",
@@ -74,7 +74,17 @@
     },
 
     "team": {
-        "title": "Our team and division of labor",
-        "contact": "Contact me"
+        "title": "Our team and respective project contributions",
+        "contact": "Contact me",
+        "table-api": [
+            ["Inverted pendulum", "Aircraft pitch angle", "Project setup", "Suspension"],
+            ["Logging API calls", "Export to PDF and CSV", "Ballbeam and calculator", "The most used service"],
+            ["Octave implementation", "", "Communication using API key", ""]
+        ],
+        "table-frontend": [
+            ["Description of API Endpoints", "Graphic design", "Project setup", "Team subpage"],
+            ["Inverted pendulum", "Aircraft pitch angle", "Ballbeam and calculator", "Suspension"],
+            ["404 page", "Optimization of animations", "Multilanguage, Statistics", ""]
+        ]
     }
 }

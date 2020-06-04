@@ -5,6 +5,7 @@
         :to="{name: 'home'}"
         class="logo navbar-brand"
       >{{ $t('nav.title') }}</router-link>
+      <span class="divider">|</span>
       <button
         class="navbar-toggler"
         type="button"

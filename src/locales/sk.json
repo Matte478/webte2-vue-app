@@ -1,6 +1,6 @@
 {
     "nav": {
-        "title": "Dzive kody",
+        "title": "dzive_kody",
         "language": "Jazyk",
         "home": "Domov",
         "page": "Podstránka",
@@ -75,6 +75,16 @@
 
     "team": {
         "title": "Náš tím a rozdelenie práce",
-        "contact": "Kontaktujte ma"
+        "contact": "Kontaktujte ma",
+        "table-api": [
+            ["Inverzné kyvadlo", "Náklon lietadla", "Setup projektu", "Tlmič kolesa"],
+            ["Logovanie API volaní", "Export do PDF a CSV", "Gulička na tyči a kalkulačka", "Najviac využívaná služba"],
+            ["Implementácia Octave", "", "Komunikácia pomocou API klúča", ""]
+        ],
+        "table-frontend": [
+            ["Popis API", "Graficky dizajn", "Setup projektu", "Podstránka tím"],
+            ["Inverzné kyvadlo", "Náklon lietadla", "Gulička na tyči a kalkulačka", "Tlmič kolesa"],
+            ["404", "Optimalizácia animácií", "Multijazyčnosť, štatistika", ""]
+        ]
     }
 }
