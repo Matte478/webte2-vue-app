@@ -61,6 +61,39 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <h3>{{ $t('statistics.send-title') }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form
+            @submit.prevent="sendEmail"
+            class="mb--2"
+          >
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="email"
+                name="email"
+                id="email"
+                :placeholder="$t('statistics.placeholder')"
+                v-model="email"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              :disabled="sending"
+            >{{ $t('statistics.send') }}</button>
+          </form>
+          <p v-if="success">
+            {{ success }}
+          </p>
+        </div>
+      </div>
     </div>
 
   </section>
@@ -73,7 +106,10 @@ import axios from "axios"
 export default {
   data() {
     return {
-      statistics: []
+      statistics: [],
+      email: "",
+      success: "",
+      sending: false
     }
   },
 
@@ -89,6 +125,25 @@ export default {
           this.statistics = response.data.data
         })
         .catch(error => {
+          console.log(error.response.data)
+        })
+    },
+
+    sendEmail() {
+      this.sending = true
+
+      axios
+        .get("/statistics/send-email", {
+          params: {
+            email: this.email
+          }
+        })
+        .then(() => {
+          this.sending = false
+          this.success = "Štatistika bola odoslaná na email: " + this.email
+        })
+        .catch(error => {
+          this.sending = false
           console.log(error.response.data)
         })
     },

@@ -70,6 +70,9 @@
         "service": "API Service",
         "count": "Count of API calls",
         "statistics": "API service usage statistics",
+        "send-title": "Send statistics to e-mail",
+        "placeholder": "E-mail adress",
+        "send": "Send",
         "most-used": {
             "title": "The most used API service",
             "desc": "So far, users have used the <span class='font-weight-bold'>{service}</span> service the most. They used it <span class='font-weight-bold'>{count} times</span>."
@@ -80,14 +83,14 @@
         "title": "Our team and respective project contributions",
         "contact": "Contact me",
         "table-api": [
-            ["Inverted pendulum", "Aircraft pitch angle", "Project setup", "Suspension"],
-            ["Logging API calls", "Export to PDF and CSV", "Ballbeam and calculator", "The most used service"],
-            ["Octave implementation", "", "Communication using API key", ""]
+            ["Inverted pendulum", "Aircraft pitch angle", "Ballbeam and calculator", "Suspension"],
+            ["Logging API calls", "Export logs to PDF", "Send statistics to e-mail", "The most used service"],
+            ["Octave implementation", "Export logs to PDF", "Communication using API key", "Export API description to PDF"]
         ],
         "table-frontend": [
-            ["Description of API Endpoints", "Graphic design", "Project setup", "Team subpage"],
+            ["Description of API Endpoints", "Graphic design", "Multilanguage", "Team subpage"],
             ["Inverted pendulum", "Aircraft pitch angle", "Ballbeam and calculator", "Suspension"],
-            ["404 page", "Optimization of animations", "Multilanguage, Statistics", ""]
+            ["404 page", "Optimization of animations", "Statistics", ""]
         ]
     },
 
