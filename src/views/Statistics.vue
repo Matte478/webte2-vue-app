@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section section--full">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -81,17 +81,25 @@
                 id="email"
                 :placeholder="$t('statistics.placeholder')"
                 v-model="email"
+                required
               />
             </div>
             <button
               type="submit"
-              class="btn btn-primary btn-block"
+              class="btn btn-green btn-block"
               :disabled="sending"
             >{{ $t('statistics.send') }}</button>
           </form>
-          <p v-if="success">
-            {{ success }}
-          </p>
+          <p
+            v-if="success"
+            v-html="successMessage"
+          />
+          <p
+            v-if="error"
+            v-html="errorMessage"
+            class="text-danger"
+          />
+          
         </div>
       </div>
     </div>
@@ -108,8 +116,29 @@ export default {
     return {
       statistics: [],
       email: "",
-      success: "",
+      success: false,
+      error: false,
       sending: false
+    }
+  },
+
+  computed: {
+    successMessage() {
+      return this.$t("statistics.success-send", {
+        'email': this.email
+      })
+    },
+    errorMessage() {
+      return this.$t("statistics.error-send", {
+        'email': this.email
+      })
+    }
+  },
+
+  watch: {
+    email() {
+      this.success = false
+      this.error = false
     }
   },
 
@@ -131,6 +160,8 @@ export default {
 
     sendEmail() {
       this.sending = true
+      this.success = false
+      this.error = false
 
       axios
         .get("/statistics/send-email", {
@@ -140,11 +171,11 @@ export default {
         })
         .then(() => {
           this.sending = false
-          this.success = "Štatistika bola odoslaná na email: " + this.email
+          this.success = true
         })
-        .catch(error => {
+        .catch(() => {
           this.sending = false
-          console.log(error.response.data)
+          this.error = true
         })
     },
 

@@ -35,7 +35,7 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary btn-block"
+              class="btn btn-green btn-block"
             >{{ $t('home.calculate') }}</button>
           </form>
         </div>
@@ -97,6 +97,7 @@
             <line-chart
               :chart-data="datacollection"
               :options="graphOptions"
+              class="card"
             ></line-chart>
           </div>
         </div>
@@ -106,7 +107,7 @@
         >
           <div class="result__box">
             <div
-              class="canvas-wrapper"
+              class="canvas-wrapper card"
               id="canvas-wrapper"
             >
               <canvas

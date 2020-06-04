@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="section section--home">
+    <section class="section section--full section--home">
       <div class="container">
         <div class="row">
           <div class="col">
@@ -24,7 +24,7 @@
               </div>
               <button
                 type="submit"
-                class="btn btn-primary btn-block"
+                class="btn btn-green btn-block"
               > {{ $t('home.calculate') }} </button>
             </form>
           </div>

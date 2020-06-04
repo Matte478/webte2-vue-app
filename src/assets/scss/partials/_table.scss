@@ -1,6 +1,6 @@
 .table-wrapper {
     width: 100%;
-    background: #fff;
+    background-color: #fff;
     box-shadow: 7px 9.5px 10px 0 rgba(21, 30, 67, 0.03);
     overflow: auto hidden;
 }
@@ -15,16 +15,16 @@
 
     tr {
         &:hover {
-            background-color: rgba($color-primary-1, 0.1);
+            background-color: rgba($color-primary-2, 0.10);
         }
+    }
+
+    td, th {
+        border: none;
     }
 
     th {
         color: $color-primary-1;
-        border-bottom: 1px solid $color-primary-1;
-    }
-
-    td {
-        border: none;
+        border-bottom: 1px solid $color-primary-2;
     }
 }

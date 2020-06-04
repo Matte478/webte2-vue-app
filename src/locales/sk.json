@@ -73,6 +73,8 @@
         "send-title": "Odoslať štatistiku na e-mail",
         "placeholder": "E-mailová adresa",
         "send": "Odoslať",
+        "success-send": "E-mail bol úspešne odoslaný na <span class='font-weight-bold'>{email}</span>",
+        "error-send": "Nebolo možné odoslať email na <span class='font-weight-bold'>{email}</span>.",
         "most-used": {
             "title": "Najviac využívaná API služba",
             "desc": "Užívatelia doteraz najviac využívali službu <span class='font-weight-bold'>{service}</span>, ktorú využili <span class='font-weight-bold'>{count} krát</span>."

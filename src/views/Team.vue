@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section section--full">
     <div class="container">
       <div class="row">
         <div class="col">

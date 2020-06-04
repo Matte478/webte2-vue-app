@@ -35,7 +35,7 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary btn-block"
+              class="btn btn-green btn-block"
             >{{ $t('home.calculate') }}</button>
           </form>
         </div>
@@ -94,7 +94,7 @@
           v-if="showGraph"
         >
           <div class="result__box">
-            <line-chart :chart-data="datacollection"></line-chart>
+            <line-chart class="card" :chart-data="datacollection"></line-chart>
           </div>
         </div>
         <div
@@ -103,7 +103,7 @@
         >
           <div class="result__box">
             <div
-              class="canvas-wrapper"
+              class="canvas-wrapper card"
               id="canvas-wrapper"
             >
               <canvas

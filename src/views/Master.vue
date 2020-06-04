@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">
       <router-link
         :to="{name: 'home'}"
         class="logo navbar-brand"

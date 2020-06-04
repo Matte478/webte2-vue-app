@@ -1,7 +1,7 @@
 .person {
     padding: 2rem 1rem;
     text-align: center;
-    background: #fff;
+    background-color: #fff;
     box-shadow: 7px 9.5px 10px 0 rgba(21, 30, 67, 0.03);
 
     @media screen and (max-width: 767px) {
@@ -22,7 +22,7 @@
         transition: all 0.2s ease-in-out;
 
         &:hover {
-            color: lighten($color-primary-1, 20%);
+            color: darken($color-primary-2, 15%);
             text-decoration: none;
         }
     }

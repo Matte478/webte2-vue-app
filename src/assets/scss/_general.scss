@@ -16,13 +16,14 @@ body {
     font-family: $font;
     // @include font-size(16);
     color: $text-color;
-    background: $body-bg;
+    background: $color-primary-5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
 #app {
+    padding-top: 58px;
     overflow: hidden;
 }
 
@@ -31,14 +32,37 @@ img {
     vertical-align: center;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $color-primary-1;
+}
+
 h3 {
     margin: 1.5em 0 0.5em 0;
     text-align: center;
 }
 
+.form-control:focus {
+    border-color: $color-primary-4;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba($color-primary-4, 0.25);
+}
+
 .section {
     position: relative;
     padding: 80px 0;
+
+    &--full {
+        min-height: calc(100vh - 58px - 56.5px);
+
+        @media screen and (max-width: 511px) {
+            min-height: calc(100vh - 56px - 83px);
+        }
+    }
 
     @media screen and (max-width: 767px) {
         padding: 40px 0;
@@ -75,4 +99,14 @@ h3 {
 
 .form-control-range {
     direction: rtl;
+}
+
+.btn-green {
+    background-color: $color-primary-4;
+    color: $color-primary-1;
+
+    &:hover {
+        background-color: darken($color-primary-4, 10%);
+        color: $color-primary-1;
+    }
 }
