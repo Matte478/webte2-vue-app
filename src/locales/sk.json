@@ -116,7 +116,9 @@
         "airplane-r": "uhol náklonu v stupňoch",
         "pendulum-r": "poloha kyvadla",
         "ballbeam-r": "pozícia guličky",
-        "suspension-r": "výška skokovej prekážky"
+        "suspension-r": "výška skokovej prekážky",
+        "export": "Stiahnúť popis API vo formáte pdf",
+        "download": "stiahnúť"
     },
 
     "footer": {

@@ -9,6 +9,19 @@
 
       <div class="row">
         <div class="col">
+          <h4>{{ $t('api.export') }}:
+            <button
+              type="submit"
+              class="btn btn-green"
+              @click="downloadPdf"
+            >{{ $t('api.download') }}</button>
+          </h4>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row">
+        <div class="col">
           <h4>{{ $t('api.base') }}:
             <pre>https://wt45.fei.stuba.sk:4445/final-api/api</pre>
           </h4>
@@ -93,3 +106,28 @@
     </div>
   </section>
 </template>
+
+<script>
+import axios from "axios"
+
+export default {
+  methods: {
+    downloadPdf() {
+      axios
+        .get("endpoints/export/pdf", {
+          responseType: "blob"
+        })
+        .then(response => {
+          const fileURL = window.URL.createObjectURL(new Blob([response.data]))
+          const fileLink = document.createElement("a")
+
+          fileLink.href = fileURL
+          fileLink.setAttribute("download", "endpoints.pdf")
+          document.body.appendChild(fileLink)
+
+          fileLink.click()
+        })
+    }
+  }
+}
+</script>

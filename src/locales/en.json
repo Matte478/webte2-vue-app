@@ -104,7 +104,7 @@
         "base": "Base API URL",
         "authentication": "Authentication",
         "authentication-desc": "All requests to Web API require authentication. This is achieved by sending a valid API access token in the request Authorization header.",
-        "calculator": "calculator",
+        "calculator": "Calculator",
         "calculator-desc": "problem which will be calculated in octave",
         "airplane": "Apirplane",
         "pendulum": "Pendulum",
@@ -116,7 +116,9 @@
         "airplane-r": "pitch angle in degrees",
         "pendulum-r": "position of pendulum",
         "ballbeam-r": "position of ball",
-        "suspension-r": "height of obstacle"
+        "suspension-r": "height of obstacle",
+        "export": "Download API Endpoints as pdf",
+        "download": "download"
     },
 
     "footer": {

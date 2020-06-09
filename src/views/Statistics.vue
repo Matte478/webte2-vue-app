@@ -17,14 +17,14 @@
         <div class="col-1">
           <button
             type="button"
-            class="btn btn-dark"
+            class="btn btn-green"
             @click="download('csv')"
           >CSV</button>
         </div>
         <div class="col-1">
           <button
             type="button"
-            class="btn btn-dark"
+            class="btn btn-green"
             @click="download('pdf')"
           >PDF</button>
         </div>
@@ -99,7 +99,7 @@
             v-html="errorMessage"
             class="text-danger"
           />
-          
+
         </div>
       </div>
     </div>
@@ -125,12 +125,12 @@ export default {
   computed: {
     successMessage() {
       return this.$t("statistics.success-send", {
-        'email': this.email
+        email: this.email
       })
     },
     errorMessage() {
       return this.$t("statistics.error-send", {
-        'email': this.email
+        email: this.email
       })
     }
   },
