@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h2 class="section__title">{{ $t('home.title') }}</h2>
+            <h1 class="section__title">{{ $t('home.title') }}</h1>
+            <p class="text-center title-desc">{{ $t('home.desc') }}</p>
           </div>
         </div>
         <div class="row">
@@ -91,3 +92,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title-desc {
+  margin: 0 auto 2.5em auto;
+  max-width: 590px;
+}
+</style>

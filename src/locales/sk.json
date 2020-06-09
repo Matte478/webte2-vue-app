@@ -3,17 +3,20 @@
         "title": "dzive_kody",
         "language": "Jazyk",
         "home": "Domov",
+        "calculator": "Kalkulačka",
         "page": "Podstránka",
         "airplane": "Lietadlo",
         "pendulum": "Kyvadlo",
         "ballbeam": "Gulička",
         "suspension": "Tlmič",
         "statistics": "Štatistika",
-        "team": "Tím"
+        "team": "Tím",
+        "api": "Popis API"
     },
 
     "home": {
         "title": "Vypočítajte nejaký príklad",
+        "desc": "Pomocou formuláru môžete vložiť vlastný výraz do programu Octave, aby ho vykonal. Môžete použiť akýkoľvek validný výraz.",
         "problem": "Príklad",
         "problem-placeholder": "Sem zadajte príklad, ktorý chcete vypočítať",
         "calculate": "Vypočítať",
@@ -94,6 +97,26 @@
             ["Inverzné kyvadlo", "Náklon lietadla", "Gulička na tyči a kalkulačka", "Tlmič kolesa"],
             ["404", "Optimalizácia animácií", "Štatistika", ""]
         ]
+    },
+
+    "api": {
+        "title": "Popis API",
+        "base": "Základná API URL",
+        "authentication": "Autentifikácia",
+        "authentication-desc": "Všetky požiadavky na API vyžadujú overenie. To sa dosiahne odoslaním platného API tokenu v hlavičke žiadosti - Authentication.",
+        "calculator": "Kalkulačka",
+        "calculator-desc": "príklad, ktorý bude vypočítaný pomocou octave",
+        "airplane": "Lietadlo",
+        "pendulum": "Kyvadlo",
+        "ballbeam": "Gulička",
+        "suspension": "Tlmič",
+        "required": "povinný parameter",
+        "optional": "nepovinný parameter",
+        "old": "inicializačné hodnoty výpočtu",
+        "airplane-r": "uhol náklonu v stupňoch",
+        "pendulum-r": "poloha kyvadla",
+        "ballbeam-r": "pozícia guličky",
+        "suspension-r": "výška skokovej prekážky"
     },
 
     "footer": {

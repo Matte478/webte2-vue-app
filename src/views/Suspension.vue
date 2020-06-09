@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h2 class="section__title">{{ $t('suspension.title') }}</h2>
+          <h1 class="section__title">{{ $t('suspension.title') }}</h1>
         </div>
       </div>
       <div class="row">
@@ -15,11 +15,11 @@
             <div class="form-group">
               <label for="exampleFormControlTextarea1">
                 {{ 
-                                $t('suspension.problem') 
-                                + inputRange.min
-                                + $t('cas.range-join')
-                                + inputRange.max
-                            }}
+                    $t('suspension.problem') 
+                    + inputRange.min
+                    + $t('cas.range-join')
+                    + inputRange.max
+                  }}
               </label>
               <input
                 class="form-control"

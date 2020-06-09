@@ -3,17 +3,20 @@
         "title": "dzive_kody",
         "language": "Language",
         "home": "Home",
+        "calculator": "Calculator",
         "page": "Page",
         "airplane": "Airplane",
         "pendulum": "Pendulum",
         "ballbeam": "Ballbeam",
         "suspension": "Suspension",
         "statistics": "Statistics",
-        "team": "Team"
+        "team": "Team",
+        "api": "API Endpoints"
     },
 
     "home": {
         "title": "Calculate some problem",
+        "desc": "Pomocou formuláru môžete vložiť vlastný výraz do programu Octave, aby ho vykonal. Môžete použiť akýkoľvek validný výraz.",
         "problem": "Problem",
         "problem-placeholder": "Problem placeholder",
         "calculate": "Calculate",
@@ -94,6 +97,26 @@
             ["Inverted pendulum", "Aircraft pitch angle", "Ballbeam and calculator", "Suspension"],
             ["404 page", "Optimization of animations", "Statistics", ""]
         ]
+    },
+
+    "api": {
+        "title": "API Endpoints",
+        "base": "Base API URL",
+        "authentication": "Authentication",
+        "authentication-desc": "All requests to Web API require authentication. This is achieved by sending a valid API access token in the request Authorization header.",
+        "calculator": "calculator",
+        "calculator-desc": "problem which will be calculated in octave",
+        "airplane": "Apirplane",
+        "pendulum": "Pendulum",
+        "ballbeam": "Ballbeam",
+        "suspension": "Suspension",
+        "required": "required",
+        "optional": "optional",
+        "old": "initialization values of the calculation",
+        "airplane-r": "pitch angle in degrees",
+        "pendulum-r": "position of pendulum",
+        "ballbeam-r": "position of ball",
+        "suspension-r": "height of obstacle"
     },
 
     "footer": {

@@ -24,6 +24,12 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <router-link
+              :to="{name: 'home'}"
+              class="nav-link"
+            >{{ $t('nav.calculator') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link
               :to="{name: 'airplane'}"
               class="nav-link"
             >{{ $t('nav.airplane') }}</router-link>
@@ -51,6 +57,12 @@
               :to="{name: 'statistics'}"
               class="nav-link"
             >{{ $t('nav.statistics') }}</router-link>
+          </li>
+           <li class="nav-item">
+            <router-link
+              :to="{name: 'api'}"
+              class="nav-link"
+            >{{ $t('nav.api') }}</router-link>
           </li>
           <li class="nav-item">
             <router-link

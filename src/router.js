@@ -10,6 +10,7 @@ import Ballbeam from './views/Ballbeam'
 import Suspension from './views/Suspension'
 import Statistics from './views/Statistics'
 import Team from './views/Team'
+import Api from './views/Api'
 
 
 const routes = [
@@ -59,6 +60,11 @@ const routes = [
         path: 'team',
         name: 'team',
         component: Team
+      },
+      {
+        path: 'api',
+        name: 'api',
+        component: Api
       },
       {
         path: '404',

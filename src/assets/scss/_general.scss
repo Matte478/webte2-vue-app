@@ -46,6 +46,15 @@ h3 {
     text-align: center;
 }
 
+pre {
+    display: inline;
+    font-size: 100%;
+}
+
+hr {
+    border-top: 1px solid rgba($color-primary-1, 0.2);
+}
+
 .form-control:focus {
     border-color: $color-primary-4;
     outline: 0;

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h2 class="section__title">{{ $t('airplane.title') }}</h2>
+          <h1 class="section__title">{{ $t('airplane.title') }}</h1>
         </div>
       </div>
       <div class="row">
