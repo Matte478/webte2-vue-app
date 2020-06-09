@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col">
             <h1 class="section__title">{{ $t('home.title') }}</h1>
-            <p class="text-center title-desc">{{ $t('home.desc') }}</p>
+            <p class="text-center title-desc" v-html="$t('home.desc')" />
           </div>
         </div>
         <div class="row">
@@ -33,10 +33,10 @@
 
         <div class="row">
           <div
-            class="col"
+            class="col pt-3"
             v-if="result"
           >
-            {{ $t('home.result') }}
+            {{ $t('home.result') }}:
             <div>
               {{ result }}
             </div>
@@ -45,10 +45,10 @@
 
         <div class="row">
           <div
-            class="col"
+            class="col pt-3"
             v-if="error"
           >
-            {{ $t('home.error') }}
+            {{ $t('home.error') }}:
             <div>
               {{ error }}
             </div>
@@ -86,7 +86,7 @@ export default {
         .catch(error => {
           this.result = ""
           this.error = error.response.data.message
-          console.log(error.response.data)
+          console.log(error.response.data.message)
         })
     }
   }

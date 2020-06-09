@@ -11,17 +11,18 @@
         "suspension": "Suspension",
         "statistics": "Statistics",
         "team": "Team",
-        "api": "API Endpoints"
+        "api": "API Endpoints",
+        "documentation": "Technical documentation"
     },
 
     "home": {
         "title": "Calculate some problem",
-        "desc": "Pomocou formuláru môžete vložiť vlastný výraz do programu Octave, aby ho vykonal. Môžete použiť akýkoľvek validný výraz.",
+        "desc": "You can use the form to insert your own expression into Octave to execute it. You can use any valid expression.<br>The form output is a direct output from Octave.",
         "problem": "Problem",
-        "problem-placeholder": "Problem placeholder",
+        "problem-placeholder": "Enter the problem which you want to calculate",
         "calculate": "Calculate",
-        "result": "Result",
-        "error": "Error"
+        "result": "Octave output",
+        "error": "Octave error"
     },
 
     "page-not-found":{
@@ -48,7 +49,8 @@
         "title": "Ballbeam",
         "problem": "Set position of ball in range from ",
         "placeholder": "Position",
-        "dataone": "Ball position"
+        "dataone": "Ball position",
+        "datatwo": "Tilt of the rod"
     },
 
     "suspension": {
@@ -64,7 +66,9 @@
         "simulation": "Simulation",
         "duration": "Animation duration",
         "outofrange": "The value you have entered is out of range.", 
-        "range-join": " to "
+        "range-join": " to ",
+        "slow": "slow",
+        "fast": "fast"
     },
 
     "statistics": {
@@ -119,6 +123,13 @@
         "suspension-r": "height of obstacle",
         "export": "Download API Endpoints as pdf",
         "download": "download"
+    },
+
+    "documentation": {
+        "title": "Technical documentation",
+        "env": "setup .env file from .env.example",
+        "env-vue": "setup .env.local file from .env.local.example",
+        "info": "Basic info about project"
     },
 
     "footer": {

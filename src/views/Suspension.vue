@@ -82,7 +82,9 @@
               max="100"
               v-model="speed"
             />
-            {{animationDuration}} s
+            <span>{{ $t('cas.slow') }}</span>
+            <span class="f-right">{{ $t('cas.fast') }}</span>
+            <!-- {{animationDuration}} s -->
           </div>
         </div>
       </div>
@@ -235,15 +237,15 @@ export default {
   watch: {
     wheelTop() {
       this.wwBrakes.set({
-        top: this.wheelTopOrigin + this.wheelTop
+        top: this.wheelTopOrigin - this.wheelTop
       })
 
       this.car.set({
-        top: this.carTopOrigin + this.carTop
+        top: this.carTopOrigin - this.carTop
       })
 
       this.spinners.set({
-        top: this.spinnersTopOrigin + this.wheelTop
+        top: this.spinnersTopOrigin - this.wheelTop
       })
 
       window.requestAnimationFrame(() => {
@@ -500,7 +502,7 @@ export default {
       axios
         .get("/suspension", {
           params: {
-            r: -this.r,
+            r: this.r,
             initX1: lastinitX1,
             initX1d: lastinitX1d,
             initX2: lastinitX2,

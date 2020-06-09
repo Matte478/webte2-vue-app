@@ -82,7 +82,9 @@
               max="100"
               v-model="speed"
             />
-            {{animationDuration}} s
+            <span>{{ $t('cas.slow') }}</span>
+            <span class="f-right">{{ $t('cas.fast') }}</span>
+            <!-- {{animationDuration}} s -->
           </div>
         </div>
       </div>
@@ -94,7 +96,10 @@
           v-if="showGraph"
         >
           <div class="result__box">
-            <line-chart class="card" :chart-data="datacollection"></line-chart>
+            <line-chart
+              class="card"
+              :chart-data="datacollection"
+            ></line-chart>
           </div>
         </div>
         <div
@@ -163,7 +168,7 @@ export default {
     },
     graphOptions() {
       return {
-        showLines:  true,
+        showLines: true,
         animation: {
           duration: 0
         },
@@ -172,7 +177,7 @@ export default {
             {
               ticks: {
                 suggestedMin: this.yMin,
-                suggestedMax: this.yMax, //suggestedMax
+                suggestedMax: this.yMax //suggestedMax
               }
             }
           ]
@@ -312,7 +317,6 @@ export default {
   },
   methods: {
     animateImg(img, hidingWidth, duration) {
-
       img.animate("left", -hidingWidth, {
         onChange: () => {
           window.requestAnimationFrame(() => {
@@ -321,10 +325,10 @@ export default {
         },
         duration: duration,
         onComplete: () => {
-          img.set({ 
+          img.set({
             top: this.randomIntFromInterval(-50, this.canvasWidth + 50),
             left: this.canvasWidth
-           })
+          })
 
           setTimeout(() => {
             this.animateImg(img, hidingWidth, duration)

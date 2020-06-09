@@ -11,6 +11,7 @@ import Suspension from './views/Suspension'
 import Statistics from './views/Statistics'
 import Team from './views/Team'
 import Api from './views/Api'
+import Documentation from './views/Documentation'
 
 
 const routes = [
@@ -65,6 +66,11 @@ const routes = [
         path: 'api',
         name: 'api',
         component: Api
+      },
+      {
+        path: 'documentation',
+        name: 'documentation',
+        component: Documentation
       },
       {
         path: '404',

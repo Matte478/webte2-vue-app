@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top"> -->
+    <nav class="navbar navbar-expand-custom navbar-dark indigo fixed-top">
       <router-link
         :to="{name: 'home'}"
         class="logo navbar-brand"
@@ -70,6 +71,12 @@
               class="nav-link"
             >{{ $t('nav.team') }}</router-link>
           </li>
+          <li class="nav-item">
+            <router-link
+              :to="{name: 'documentation'}"
+              class="nav-link"
+            >{{ $t('nav.documentation') }}</router-link>
+          </li>
         </ul>
         <span class="navbar-text white-text">
           <ul class="navbar-nav mr-auto">
@@ -110,8 +117,14 @@
 
 <script>
 export default {
+  created() {
+    document.getElementsByTagName("html")[0].lang = this.$i18n.locale
+  },
+  
   methods: {
     changeLocale() {
+      document.getElementsByTagName("html")[0].lang = this.$i18n.locale
+
       this.$router.push({
         params: {
           lang: this.$i18n.locale

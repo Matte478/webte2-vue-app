@@ -20,7 +20,7 @@
                 + $t('cas.range-join')
                 + inputRange.max
                 }}
-                  </label>
+              </label>
               <input
                 class="form-control"
                 id="exampleFormControlTextarea1"
@@ -82,7 +82,9 @@
               max="100"
               v-model="speed"
             />
-            {{animationDuration}} s
+            <span>{{ $t('cas.slow') }}</span>
+            <span class="f-right">{{ $t('cas.fast') }}</span>
+            <!-- {{animationDuration}} s -->
           </div>
         </div>
       </div>
@@ -172,7 +174,7 @@ export default {
             {
               ticks: {
                 suggestedMin: this.yMin,
-                suggestedMax  : this.yMax
+                suggestedMax: this.yMax
               }
             }
           ]

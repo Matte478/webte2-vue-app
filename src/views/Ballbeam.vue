@@ -82,7 +82,9 @@
               max="100"
               v-model="speed"
             />
-            {{animationDuration}} s
+            <span>{{ $t('cas.slow') }}</span>
+            <span class="f-right">{{ $t('cas.fast') }}</span>
+            <!-- {{animationDuration}} s -->
           </div>
         </div>
       </div>
@@ -127,7 +129,6 @@ import axios from "axios"
 import LineChart from "./graphs/Graph.js"
 import { fabric } from "fabric"
 
-
 export default {
   components: {
     LineChart
@@ -171,7 +172,7 @@ export default {
     },
     graphOptions() {
       return {
-        showLines:  true,
+        showLines: true,
         animation: {
           duration: 0
         },
@@ -180,7 +181,7 @@ export default {
             {
               ticks: {
                 suggestedMin: this.yMin,
-                suggestedMax: this.yMax, //suggestedMax
+                suggestedMax: this.yMax //suggestedMax
               }
             }
           ]
@@ -206,6 +207,14 @@ export default {
             borderWidth: 3,
             borderColor: "#f82599",
             data: this.positionOnScreen
+          },
+          {
+            fill: false,
+            label: this.$t("ballbeam.datatwo"),
+            backgroundColor: "#f87979",
+            borderWidth: 3,
+            borderColor: "#f87979",
+            data: this.angleOnScreen
           }
         ]
       }
@@ -222,7 +231,7 @@ export default {
     }
   },
   watch: {
-    beamAngle() { 
+    beamAngle() {
       this.beam.set({
         angle: this.beamAngleDegrees
       })
@@ -233,7 +242,7 @@ export default {
       this.ball.set({
         left: this.ballPos
       })
-      
+
       window.requestAnimationFrame(() => {
         this.canvas.renderAll()
       })
@@ -247,13 +256,10 @@ export default {
       backgroundColor: "#cce6ff" //#cce6ff
     })
 
-    fabric.Image.fromURL(
-      require("../assets/images/gear_green.png"),
-      img => {
-        this.gear = img
-        this.imgCallback()
-      }
-    )
+    fabric.Image.fromURL(require("../assets/images/gear_green.png"), img => {
+      this.gear = img
+      this.imgCallback()
+    })
   },
   methods: {
     submitForm() {
@@ -278,7 +284,10 @@ export default {
           this.lastX = data.lastX
 
           this.yMax = Math.max.apply(Math, this.position)
-          this.yMin = Math.min.apply(Math, this.position)
+          this.yMin =
+            Math.min.apply(Math, this.position) > -50
+              ? -50
+              : Math.min.apply(Math, this.position)
 
           this.appendOnScreenData()
         })
@@ -313,16 +322,15 @@ export default {
       htmlCanvas.height = wrapper.height
     },
     imgCallback() {
-
       let triangle = new fabric.Triangle({
         centeredRotation: false,
         originX: "center",
         originY: "bottom",
-        width: 110, 
-        height: 240, 
-        fill: 'black', 
-        left: 555, 
-        top: 1110,
+        width: 110,
+        height: 240,
+        fill: "black",
+        left: 555,
+        top: 1110
       })
       triangle.setGradient("fill", {
         x1: triangle.width,
@@ -456,35 +464,41 @@ export default {
         top: this.gear.top,
         left: this.gear.left,
         radius: 3,
-        fill: 'lightGrey',
+        fill: "lightGrey",
         stroke: "grey"
       })
 
-      this.beam = new fabric.Group([this.ball, pole, poleStopperRight, poleStopperLeft], {
-        centeredRotation: false,
-        originX: "center",
-        originY: "bottom",
-      })
-      
-      let mainGroup = new fabric.Group([this.beam, triangle, screw, this.gear,  gearScrew], {
-        centeredRotation: false,
-        originX: "center",
-        originY: "bottom",
-        top: this.canvas.width,
-        left: this.canvas.width / 2,
-        dirty: true,
-        objectCaching: false
-      })
+      this.beam = new fabric.Group(
+        [this.ball, pole, poleStopperRight, poleStopperLeft],
+        {
+          centeredRotation: false,
+          originX: "center",
+          originY: "bottom"
+        }
+      )
+
+      let mainGroup = new fabric.Group(
+        [this.beam, triangle, screw, this.gear, gearScrew],
+        {
+          centeredRotation: false,
+          originX: "center",
+          originY: "bottom",
+          top: this.canvas.width,
+          left: this.canvas.width / 2,
+          dirty: true,
+          objectCaching: false
+        }
+      )
       mainGroup.scaleToWidth(this.canvas.width * 0.925)
- 
+
       this.canvas.add(mainGroup)
     },
     radToDeg(radians) {
       return radians * (180 / Math.PI)
-    },
+    }
     // isOutOfRange() {
     //   return this.r < this.inputRange.min || this.r > this.inputRange.max
-    // } 
+    // }
   }
 }
 </script>
